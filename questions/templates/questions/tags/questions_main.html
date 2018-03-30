@@ -1,0 +1,45 @@
+<section class="section section-lg bg-white text-center">
+    <div class="shell shell-wide">
+        <div class="range range-50 range-md-center">
+            <div class="cell-xs-12">
+                <h3>FAQ</h3>
+                <div class="panel-group panel-group-custom panel-group-corporate" id="accordion1" role="tablist"
+                     aria-multiselectable="false">
+
+                    <!-- Bootstrap panel-->
+                    {% for question in questions %}
+                        <div class="panel panel-custom panel-corporate">
+                            <div class="panel-heading"
+                                 id="category-question{{ forloop.counter }}"
+                                 role="tab">
+                                <div class="panel-title">
+                                    <a class="collapsed"
+                                       role="button" data-toggle="collapse"
+                                       data-parent="#accordion1"
+                                       href="#category-collapse{{ forloop.counter }}"
+                                       aria-controls="category-collapse{{ forloop.counter }}"
+                                       aria-expanded="false">
+                                        {{ question.text }}
+                                        <div class="panel-arrow"></div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="panel-collapse collapse"
+                                 id="category-collapse{{ forloop.counter }}"
+                                 role="tabpanel"
+                                 aria-labelledby="category-question{{ forloop.counter }}">
+                                <div class="panel-body">
+                                    <p>{{ question.answer|safe }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shell shell-wide text-center">
+        <a href="{% url 'question-list' %}" class="button button-sm button-primary">Посмотреть все вопросы</a>
+    </div>
+</section>

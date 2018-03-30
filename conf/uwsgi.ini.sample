@@ -1,0 +1,16 @@
+[uwsgi]
+chdir = /home/smyt/smyt_careers
+virtualenv = /home/smyt/.envs/smyt_careers
+master = true
+processes = 2
+
+socket = /tmp/career.socket
+pidfile = /tmp/career.pid
+chmod-socket = 666
+wsgi-file = smyt_careers/wsgi.py
+vacuum = true
+uid = smyt
+gid = www-data
+touch-reload=/home/smyt/smyt_careers.touch
+
+die-on-term = true

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static rest_framework vacancies_tags question_tags %}
+
+{% block content %}
+    <!-- Вакансии -->
+    <section class="section section-lg bg-white text-center sm-p-t">
+        <div class="shell shell-wide">
+
+            <h3>Наши вакансии</h3>
+
+            <div class="divider divider-default"></div>
+
+            <!-- Фильтр -->
+            {% search_filter %}
+
+        </div>
+
+        {% main_vacancies %}
+
+        <div class="shell shell-wide text-center">
+            <a href="{% url 'vacancy-list' %}"
+               class="scroll button button-sm button-primary with-lato">Посмотреть все открытые вакансии</a>
+        </div>
+
+    </section>
+
+    {% include 'vacancies/about.html' %}
+
+    <!-- Faq -->
+    {% main_questions %}
+
+    {% include 'vacancies/contacts.html' %}
+
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load rest_framework %}
+
+
+{% block content %}
+
+    {% if success %}
+            success
+        {% else %}
+{#            {% if serializer.errors %}#}
+{#                invalid#}
+{#            {% endif %}#}
+    {% endif %}
+    <!-- Описание вакансии -->
+	<section class="section section-lg bg-white">
+		<div class="shell shell-wide">
+			<div class="range range-ten range-50 range-sm-center range-md-middle range-lg-justify range-md-reverse">
+				<div class="cell-xs-12 smyt-big">
+					<h3>{{ object.name }}</h3>
+					<h6>{{ object.country }}, {{ header_text_cities }}</h6>
+
+					<div class="divider divider-default"></div>
+
+					{{ object.text_inner|safe }}
+
+					<h4 class="m-t-20">Опыт и знания</h4>
+
+                    {{ object.text_experience|safe }}
+
+					<h4 class="m-t-20">Описание работы</h4>
+
+					{{ object.text_desc|safe }}
+
+					<h4 class="m-t-20">Отборочный цикл</h4>
+                    {{ object.text_qualifying|safe }}
+
+				</div>
+
+			</div>
+
+			<h6 class="p-t-20">Данная вакансия доступна для
+                {% if is_all_cities %}
+                    всех городов {{ object.country.name_in_case }}
+                {% else %}
+                    следующих городов {{ object.country.name_in_case }}: {{ footer_text_cities }}
+                {% endif %}
+            </h6>
+
+		</div>
+	</section>
+
+    	<!-- CTA Primary-->
+	<section class="section section-xs text-center bg-black-lighter">
+		<div class="shell-wide">
+			<div class="box-cta-thin">
+				<h4 class="text-left send-us-your-profile">Пришлите нам свое резюме!</h4>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-lg bg-white" id="send-profile">
+		<div class="shell shell-wide">
+			<form class="rd-mailform grey-chrome-auto-fields"
+			      data-form-output="form-output-global"
+			      data-form-type="contact"
+			      method="post"
+			      action="{% url 'home' %}">{% csrf_token %}
+
+				<div class="range">
+					<div class="cell-xs-12 cell-md-6 m-t-20">
+						<div class="form-wrap form-wrap-validation">
+                            {% render_field serializer.fio serializer.fio.style %}
+						</div>
+					</div>
+					<div class="cell-xs-12 cell-md-6 m-t-20">
+						<div class="form-wrap form-wrap-validation">
+                            {% render_field serializer.email serializer.email.style %}
+						</div>
+					</div>
+
+					<div class="cell-xs-12 cell-md-6 m-t-20">
+						<div class="file_upload">
+							<button type="button">Прикрепить резюме</button>
+							<div>*.doc, *.docx, *.rtf, *.pdf</div>
+							{% render_field serializer.file serializer.file.style %}
+						</div>
+					</div>
+
+                    {% if serializer.position.style.input_type != 'hidden' %}
+                        <div class="cell-xs-12 cell-md-6 m-t-20">
+                            <div class="form-wrap form-wrap-validation">
+                                {% render_field serializer.position serializer.position.style %}
+                            </div>
+                        </div>
+                        {% else %}
+                            {% render_field serializer.position serializer.position.style %}
+                    {% endif %}
+
+					<div class="cell-xs-12 cell-md-6 m-t-20">
+						<div class="form-wrap form-wrap-validation">
+							{% render_field serializer.phone serializer.phone.style %}
+						</div>
+					</div>
+
+					<div class="cell-xs-12 cell-md-6 m-t-20">
+						<div class="form-wrap form-wrap-validation">
+							{% render_field serializer.link serializer.link.style %}
+						</div>
+					</div>
+
+					<div class="cell-xs-12 cell-md-6 m-t-20">
+						<div class="form-wrap form-wrap-validation">
+							{% render_field serializer.skype serializer.skype.style %}
+                        </div>
+					</div>
+
+				</div>
+
+				<div class="range m-t-20">
+					<div class="cell-xs-12">
+                        {% render_field serializer.comment serializer.comment.style %}
+					</div>
+				</div>
+
+
+				<div class="range m-t-20">
+					<div class="cell-xs-12 cell-md-6">
+                        <div class="form-wrap form-wrap-validation validation-captcha">
+						    <div id="profile2-recaptcha" class="recaptcha"></div>
+                        </div>
+
+					</div>
+					<div class="cell-xs-12 cell-md-6">
+						<div class="form-button">
+							<button class="base-smyt-btn" type="submit">Отправить</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+
+{% endblock %}

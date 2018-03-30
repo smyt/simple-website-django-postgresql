@@ -1,0 +1,21 @@
+<div class="form-wrap form-wrap-validation {% if field.errors %}has-error{% endif %}">
+  {% if field.label %}
+    <label class="{% if style.hide_label %}sr-only{% else %}form-label{% endif %}" for="{% if style.id %}{{ style.id }}{% else %}{{ field.name }}{% endif %}">
+    {% if style.label_text %}
+        {{ style.label_text }}
+        {% else %}
+        {{ field.label }}
+    {% endif %}
+    </label>
+  {% endif %}
+
+  <textarea name="{{ field.name }}" id="{% if style.id %}{{ style.id }}{% else %}{{ field.name }}{% endif %}" class="form-input" {% if style.placeholder %}placeholder="{{ style.placeholder }}"{% endif %} {% if style.rows %}rows="{{ style.rows }}"{% endif %} {% if style.constraints %}data-constraints="{{ style.constraints }}"{% endif %}>{% if field.value %}{{ field.value }}{% endif %}</textarea>
+
+  {% if field.errors %}
+    {% for error in field.errors %}<span class="help-block">{{ error }}</span>{% endfor %}
+  {% endif %}
+
+  {% if field.help_text %}
+    <span class="help-block">{{ field.help_text|safe }}</span>
+  {% endif %}
+</div>

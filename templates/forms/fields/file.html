@@ -1,0 +1,11 @@
+<input name="{{ field.name }}" id="{{ style.form_name }}_{{ field.name }}" type="{{ style.input_type }}" {% if style.placeholder %}placeholder="{{ style.placeholder }}"{% endif %} {% if field.value %}value="{{ field.value }}"{% endif %} {% if style.autofocus and style.input_type != "hidden" %}autofocus{% endif %} {% if style.constraints %}data-constraints="{{ style.constraints }}"{% endif %} {% if style.data_link_field %}data-link-field="{{ style.form_name }}_{{ style.data_link_field }}"{% endif %}>
+
+{% if field.errors %}
+    {% for error in field.errors %}
+        <span class="help-block">{{ error }}</span>
+    {% endfor %}
+{% endif %}
+
+{% if field.help_text %}
+    <span class="help-block">{{ field.help_text|safe }}</span>
+{% endif %}

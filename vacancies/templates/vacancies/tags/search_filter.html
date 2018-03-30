@@ -1,0 +1,34 @@
+{% load rest_framework %}
+
+<form
+        class="search-vacancies {% if ajax %}search-vacancies-ajax{% endif %}"
+        method="GET"
+        action="{% if ajax %}{% url 'vacancies-list' %}{% else %}{% url 'vacancy-list' %}{% endif %}">
+
+    <!-- Фильтр -->
+    <div class="range range-justify">
+
+        <div class="cell-lg-2 cell-md-2 cell-xs-12">
+            {% render_field serializer.country serializer.country.style %}
+        </div>
+
+        <div class="cell-lg-2 cell-md-2 cell-xs-12">
+            {% render_field serializer.cities serializer.cities.style %}
+        </div>
+
+        <div class="cell-lg-2 cell-md-2 cell-xs-12">
+            {% render_field serializer.profile serializer.profile.style %}
+        </div>
+
+        <div class="cell-lg-2 cell-md-2 cell-xs-12">
+            {% render_field serializer.experience serializer.experience.style %}
+        </div>
+
+        <div class="cell-lg-2 cell-md-2 cell-xs-12">
+            <button class="btn btn-primary smyt-find-btn" type="submit">Найти</button>
+            <!--<button class="button button-primary smyt-find-btn" type="submit">Найти</button>-->
+        </div>
+
+    </div>
+
+</form>

@@ -1,0 +1,63 @@
+{% load static vacancies_tags %}
+<!-- RD Navbar-->
+<header class="page-header section">
+
+    <div class="rd-navbar-wrap rd-navbar-centered">
+
+        <nav class="rd-navbar"
+             data-layout="rd-navbar-fixed"
+             data-sm-layout="rd-navbar-fixed"
+             data-md-layout="rd-navbar-fullwidth"
+             data-md-device-layout="rd-navbar-fixed"
+             data-lg-layout="rd-navbar-static"
+             data-lg-device-layout="rd-navbar-static"
+             data-md-stick-up-offset="0px"
+             data-lg-stick-up-offset="0px"
+             data-stick-up="true"
+             data-sm-stick-up="true"
+             data-md-stick-up="true"
+             data-lg-stick-up="true"
+        >
+
+            <div class="rd-navbar-inner">
+
+                <div class="rd-navbar-aside-left">
+                    <div class="rd-navbar-nav-wrap">
+                        <ul class="rd-navbar-nav">
+                            {% url 'vacancy-list' as url_vacancy_list %}
+                            <li class="{% active_menu_item url_vacancy_list  %}"><a href="{{ url_vacancy_list }}">Вакансии</a></li>
+                            {% url 'question-list' as url_question_list %}
+                            <li class="{% active_menu_item url_question_list %}"><a href="{{ url_question_list }}">Faq</a></li>
+                            {% url 'home' as url_home %}
+                            <li class="{% active_menu_item url_home %}"><a class="scroll" href="{{ url_home }}#contacts-form" id="contacts" data-point-inc="120">Контакты</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- RD Navbar Panel-->
+                <div class="rd-navbar-panel">
+                    <!-- RD Navbar Toggle-->
+                    <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span>
+                    </button>
+                    <!-- RD Navbar Brand-->
+                    <div class="rd-navbar-brand">
+                        <a class="brand-name" href="{% url 'home' %}">
+                            <img class="logo-default" src="{% static 'images/smyt-careers-new.png' %}" alt=""/>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="rd-navbar-collapse-toggle" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span>
+                </div>
+
+                <div class="rd-navbar-aside-right rd-navbar-collapse">
+                    <a id="send-self-profile" class="button button-sm button-default-outline" href="#"
+                       data-toggle="modal" data-target="#profile-modal"
+                    >Отправить резюме</a>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+</header>

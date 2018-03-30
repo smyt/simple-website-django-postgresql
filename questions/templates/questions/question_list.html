@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load question_tags %}
+
+{% block content %}
+
+    <!-- Список вопросов Faq-->
+    <section class="section section-lg bg-white text-center">
+        <div class="shell shell-wide">
+
+            <div class="range range-xs-center">
+                <div class="cell-xs-12">
+
+                    <div class="panel-group panel-group-custom panel-group-corporate" id="accordion1" role="tablist"
+                         aria-multiselectable="false">
+
+                        {% for category in results %}
+
+                            <h3 class="text-left {% if forloop.first %}m-b-50{% else %}faq-header{% endif %}">{{ category.name }}</h3>
+
+                            {% for question in category.questions %}
+
+                                <div class="panel panel-custom panel-corporate">
+                                    <div class="panel-heading"
+                                         id="category{{ forloop.parentloop.counter }}question{{ forloop.counter }}"
+                                         role="tab">
+                                        <div class="panel-title">
+                                            <a class="collapsed"
+                                               role="button" data-toggle="collapse"
+                                               data-parent="#accordion1"
+                                               href="#category{{ forloop.parentloop.counter }}collapse{{ forloop.counter }}"
+                                               aria-controls="category{{ forloop.parentloop.counter }}collapse{{ forloop.counter }}"
+                                               aria-expanded="false">
+                                                {{ question.text }}
+                                                <div class="panel-arrow"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="panel-collapse collapse"
+                                         id="category{{ forloop.parentloop.counter }}collapse{{ forloop.counter }}"
+                                         role="tabpanel"
+                                         aria-labelledby="category{{ forloop.parentloop.counter }}question{{ forloop.counter }}">
+                                        <div class="panel-body">
+                                            <p>{{ question.answer|safe }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Форма вопроса -->
+            <div class="range range-xs-center">
+                <div class="cell-xs-12 text-left">
+                    <h3>Нет моего вопроса, но он очень важен для меня!</h3>
+
+                    <p class="smyt-p">Заполните форму ниже, и наши HR-специалисты обязательно ответят, или задайте вопрос в
+                        он-лайн чате.</p>
+
+                    <p class="smyt-p">Мы будем рады рассказать все о SMYT!</p>
+
+                    {% question_form %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

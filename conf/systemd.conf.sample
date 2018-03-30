@@ -1,0 +1,9 @@
+[Unit]
+Description=smyt_careers uwsgi daemon
+
+[Service]
+WorkingDirectory=/home/smyt/smyt_careers
+ExecStart=/home/smyt/.envs/smyt_careers/bin/uwsgi /home/smyt/smyt_careers/conf/uwsgi.ini
+
+[Install]
+WantedBy=multi-user.target

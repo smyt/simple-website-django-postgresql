@@ -1,0 +1,38 @@
+{% load i18n %}
+
+<div class="shell shell-wide">
+    <!-- Вакансии -->
+    <div class="range range-30 range-center text-left">
+
+        {% for vacancy in vacancies %}
+            {% url 'vacancy-detail' slug=vacancy.slug as vacancy_url %}
+
+            <div class="cell-lg-3 cell-sm-6 cell-md-6">
+                <div class="box-info">
+                    <div class="box-info-inner">
+                        <h6 class="box-info-title"><a href="{{ vacancy_url }}">{{ vacancy.name }}</a></h6>
+                        <p>{{ vacancy.text_main|safe }}</p>
+                    </div>
+
+                    <div class="box-info-footer">
+                        <ul>
+                            <li class="box-classic smyt-box-mn">
+                                <span class="icon icon-primary-gradient mdi mdi-map-marker icon-point"></span>
+                                <span class="icon-point-title">{{ vacancy.country }}, {{ vacancy.text_count_cities }}
+                                </span>
+                            </li>
+
+                            <li class="box-classic smyt-box-mn text-center">
+                                <a href="{{ vacancy_url }}#send-profile"
+                                   class="scroll button button-sm button-primary with-lato">Откликнуться</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+</div>

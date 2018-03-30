@@ -1,0 +1,7 @@
+MAIN_PAGE = 'main_page'
+VACANCY_LIST = 'vacancy_list'
+VACANCY_PAGE = 'vacancy_page'
+QUESTION_LIST = 'question_list'
+VACANCY_TITLE = '{VACANCY_TITLE}'
+CITY_NAME = '{CITY_NAME}'
+COUNTRY_NAME = '{COUNTRY_NAME}'

@@ -1,0 +1,132 @@
+{% load rest_framework %}
+
+<!-- Контакты -->
+<!--<section class="section section-lg bg-gray-lighter text-center" id="contacts-form" data-type="anchor">-->
+<section class="section section-lg bg-gray-lighter text-center" id="contacts-form">
+    <div class="shell shell-wide">
+        <h3>Контакты</h3>
+        <div class="divider divider-default"></div>
+        <div class="range range-50 range-xs-center">
+            <div class="cell-xs-12 cell-md-6 cell-lg-8 right-block-divider">
+
+                <!-- Адрес -->
+                <div class="our-contacts">
+
+                    <article class="box-contacts">
+                        <span class="icon icon-md-smaller icon-primary-gradient mdi mdi-email-open"></span>
+                        <span class="m-l-40">
+								<a class="contacts-link" href="#" onclick="return false">hr@smyt.ru</a>
+							</span>
+                    </article>
+
+                    <article class="box-contacts">
+                        <span class="icon icon-md-smaller icon-primary-gradient mdi mdi-phone"></span>
+                        <span class="m-l-40">
+								<a class="contacts-link" href="#" onclick="return false">+7 (812) 309-72-84</a>
+							</span>
+                    </article>
+
+                    <article class="box-contacts">
+                        <span class="icon icon-md-smaller icon-primary-gradient mdi mdi-map-marker"></span>
+                        <span class="m-l-40">
+								<a class="contacts-link" href="#" onclick="return false">г. Санкт-Петербург, 17-я линия В.О., д. 4-6, оф. T-217 БЦ Ситилинк</a>
+							</span>
+                    </article>
+
+                </div>
+
+                <div class="divider divider-default"></div>
+
+                <!--Форма жалобы -->
+
+                <h6 class="text-left" id="send-feedback-about-hr">Пожаловаться на HR-департамент можно тут:</h6>
+
+                <form class="rd-mailform white-chrome-auto-fields"
+                      data-form-output="form-output-global"
+                      data-form-type="contact"
+                      method="post"
+                      action="{% url 'complaint-form' %}">{% csrf_token %}
+
+                    <div class="range range-20">
+
+                        <div class="cell-xs-12 cell-md-6">
+                            {% render_field complaint_serializer.comment complaint_serializer.comment.style %}
+                        </div>
+
+                        <div class="cell-xs-12 cell-md-6">
+                            <div class="form-wrap form-wrap-validation contacts-max-width">
+                                {% render_field complaint_serializer.fio complaint_serializer.fio.style %}
+                            </div>
+
+                            <div class="form-wrap form-wrap-validation contacts-max-width">
+                                {% render_field complaint_serializer.email complaint_serializer.email.style %}
+                            </div>
+
+                            <div class="form-wrap">
+                                <div class="form-wrap form-wrap-validation validation-captcha">
+                                    <div id="c1-recaptcha" class="recaptcha"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cell-xs-12">
+                            <div class="form-button">
+                                <button class="base-smyt-btn" type="submit" id="hr-send-button">Отправить жалобу
+                                    директору
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="cell-xs-12 cell-md-6 cell-lg-4">
+                <h6 class="text-left our-contacts" id="ask-adding-info">Если вы не нашли интересующую вас
+                    информацию, напишите нам!
+                    Специалисты HR-департамента с радостью ответят вам.</h6>
+
+                <form class="rd-mailform m-t-10 white-chrome-auto-fields"
+                      data-form-output="form-output-global"
+                      data-form-type="contact"
+                      method="post"
+                      action="{% url 'question-form' %}">{% csrf_token %}
+
+                    <div class="range range-20">
+
+                        <div class="col-xs-12">
+
+                            <div class="form-wrap form-wrap-validation">
+                                {% render_field question_serializer.fio question_serializer.fio.style %}
+                            </div>
+
+                            <div class="form-wrap form-wrap-validation">
+                                {% render_field question_serializer.email question_serializer.email.style %}
+                            </div>
+
+                            <div class="form-wrap form-wrap-validation">
+                                {% render_field question_serializer.comment question_serializer.comment.style %}
+                            </div>
+                        </div>
+
+                        <div class="cell-xs-12 cell-md-6">
+                            <div class="form-wrap form-wrap-validation validation-captcha">
+                                <div id="c2-recaptcha" class="recaptcha"></div>
+                            </div>
+                        </div>
+
+                        <div class="cell-xs-12 cell-md-6">
+                            <div class="form-button">
+                                <button class="base-smyt-btn" type="submit" id="ask-button">Спросить</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>

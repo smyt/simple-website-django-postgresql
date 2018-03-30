@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load vacancies_tags %}
+
+{% block content %}
+
+    <!-- Вакансии -->
+	<section class="section section-lg bg-white text-center sm-p-t">
+		<div class="shell shell-wide">
+
+			<h3>Все вакансии компании SMYT</h3>
+
+			<div class="divider divider-default"></div>
+            {%  search_filter ajax=True %}
+
+			<h6 class="text-sm-right text-xs-center not-found-job">
+				<a data-target="#profile-modal" data-toggle="modal" href="#">
+				Не нашли нужной вакансии?
+				</a>
+			</h6>
+
+		</div>
+	</section>
+
+	<!-- Список вакансий-->
+	<section class="section section-lg bg-white text-center">
+		<div class="shell shell-wide">
+			<div class="range range-xs-center">
+				<div class="cell-xs-12">
+
+                    {% if not results %}
+                        <div id="no-vacancies" class="text-center">
+                            <p class="smyt-big">
+                                Пока у нас нет таких вакансий, но пришлите нам свое резюме, и мы что-нибудь придумаем.
+                            </p>
+                        </div>
+                    {% endif %}
+
+					<!-- Вакансии в виде таблице на > 767 -->
+
+					<div id="job-table" class="table-novi table-custom-responsive">
+						<table class="table-custom table-hover" id="hire-table">
+							<tbody>
+                                {% for vacancy in results %}
+                                    <tr>
+                                        <td><a class="person-position" href="{% url 'vacancy-detail' vacancy.slug %}">{{ vacancy.name }}</a></td>
+                                        <td><p>{{ vacancy.profile }}</p></td>
+                                        <td><p>{{ vacancy.country }}, {{ vacancy.text_count_cities }}</p></td>
+                                        <td class="text-right send-profile-cell">
+                                            <a class="button button-sm button-primary" href="{{ vacancy.url }}#send-profile">Откликнуться</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+							</tbody>
+						</table>
+					</div>
+
+					<!-- Вакансии в виде табов на < 767 -->
+					<div id="job-table-m" class="text-left">
+                        {% for vacancy in results %}
+                            <div class="box-info">
+                                <div class="box-info-inner">
+                                    <h6 class="box-info-title"><a href="{% url 'vacancy-detail' vacancy.slug %}">{{ vacancy.name }}</a></h6>
+                                    <p>{{ vacancy.profile }}</p>
+                                </div>
+                                <div class="box-info-footer">
+                                    <ul>
+                                        <li class="box-classic">
+                                            <span class="icon icon-primary-gradient mdi mdi-map-marker icon-point"></span>
+                                            <span class="icon-point-title">{{ vacancy.country }}, {{ vacancy.text_count_cities|lower }}</span>
+                                        </li>
+                                        <li class="box-classic text-center">
+                                            <a href="{{ vacancy.url }}#send-profile"
+                                               class="scroll button button-sm button-primary with-lato">Откликнуться</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endfor %}
+					</div>
+
+				</div>
+			</div>
+            {% if next_url %}
+                <div class="range range-xs-center">
+                    <div class="col-xs-12">
+                        <a id="load-more"
+                           href="#"
+                           data-load-url="{{ next_url }}"
+                           onclick="return false"
+                           class="button button-sm button-primary"
+                           type="button">Показать еще 20 вакансий</a>
+                    </div>
+                </div>
+        {% endif %}
+		</div>
+	</section>
+
+{% endblock %}
+
+

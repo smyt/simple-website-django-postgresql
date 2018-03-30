@@ -1,0 +1,40 @@
+{% load rest_framework %}
+
+<form class="rd-mailform grey-chrome-auto-fields"
+      data-form-output="form-output-global"
+      data-form-type="contact"
+      method="post"
+      action="{% url 'question-form' %}">{% csrf_token %}
+
+    <div class="range range-20">
+
+        <div class="cell-xs-6">
+            <div class="form-wrap form-wrap-validation">
+                {% render_field serializer.fio serializer.fio.style %}
+            </div>
+        </div>
+
+        <div class="cell-xs-6 m-t-20">
+            <div class="form-wrap form-wrap-validation">
+                {% render_field serializer.email serializer.email.style %}
+            </div>
+        </div>
+
+        <div class="cell-xs-12 m-t-20">
+            {% render_field serializer.comment serializer.comment.style %}
+        </div>
+    </div>
+
+    <div class="range m-t-20">
+        <div class="cell-xs-12 cell-md-6">
+            <div class="form-wrap form-wrap-validation validation-captcha">
+                <div id="faq-recaptcha" class="recaptcha"></div>
+            </div>
+        </div>
+        <div class="cell-xs-12 cell-md-6">
+            <div class="form-button">
+                <button class="base-smyt-btn" type="submit">Спросить</button>
+            </div>
+        </div>
+    </div>
+</form>

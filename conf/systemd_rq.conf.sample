@@ -1,0 +1,9 @@
+[Unit]
+Description=smyt_careers rq daemon
+
+[Service]
+WorkingDirectory=/home/smyt/smyt_careers
+ExecStart=/home/smyt/.envs/smyt_careers/bin/python /home/smyt/smyt_careers/manage.py rqworker default
+
+[Install]
+WantedBy=multi-user.target

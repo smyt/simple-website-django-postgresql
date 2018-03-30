@@ -1,0 +1,141 @@
+{% load static compress seopages_tags %}
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+<head>
+    <!-- Site Title-->
+    {% block head %}{% generate_seo %}{% endblock %}
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <!--мета теги для шаринга в соц. сетях-->
+	<meta property="og:site_name" content="SMYT Careers!"/>
+	<meta property="og:title" content="Сайт карьеры в компании SMYT!"/>
+	<meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+	<meta property="og:description"
+	      content="Хотите работать у нас? Здесь актуальные вакансии и информация о работе в SMYT."/>
+
+	<link rel='image_src' href="{% static 'images/mess_smyt_small.png' %}">
+	<meta property="og:image" itemprop="image" content="{% static 'images/mess_smyt_small.png' %}"/>
+
+	<meta property="og:type" content="website"/>
+
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <!-- Stylesheets -->
+    {% compress css %}
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mdi.css' %}">
+        <link rel="stylesheet" href="{% static 'css/fl-bigmug-line.css' %}">
+        <link rel="stylesheet" href="{% static 'css/smyt.css' %}">
+    {% endcompress %}
+
+    <!--[if lt IE 10]>
+	<div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;">
+		<a href="http://windows.microsoft.com/en-US/internet-explorer/">
+			<img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820"
+			     alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a>
+	</div>
+	{% compress js inline %}
+	    <script src="{% static 'js/html5shiv.min.js' %}"></script>
+    {% endcompress %}
+	<![endif]-->
+    <script>reCaptchaSiteKey="{{ google_captcha_key }}"</script>
+    <!-- Yandex.Metrika counter -->
+	<script type="text/javascript" >
+		(function (d, w, c) {
+			(w[c] = w[c] || []).push(function() {
+				try {
+					w.yaCounter47673679 = new Ya.Metrika2({
+						id:47673679,
+						clickmap:true,
+						trackLinks:true,
+						accurateTrackBounce:true,
+						webvisor:true
+					});
+				} catch(e) { }
+			});
+
+			var n = d.getElementsByTagName("script")[0],
+				s = d.createElement("script"),
+				f = function () { n.parentNode.insertBefore(s, n); };
+			s.type = "text/javascript";
+			s.async = true;
+			s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+			if (w.opera == "[object Opera]") {
+				d.addEventListener("DOMContentLoaded", f, false);
+			} else { f(); }
+		})(document, window, "yandex_metrika_callbacks2");
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/47673679" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->
+
+</head>
+<body>
+
+<!-- Page preloader-->
+<div class="page-loader">
+    <div class="page-loader-body">
+        <div class="preloader-wrapper">
+            <div class="spinner-layer">
+                <div class="spinner spinner-big"></div>
+            </div>
+            <div class="spinner-layer">
+                <div class="spinner spinner-medium"></div>
+            </div>
+            <div class="spinner-layer">
+                <div class="spinner spinner-small"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page-->
+<div class="page">
+
+    {% include 'header.html' %}
+
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
+
+    <!--Форма отправить резюме-->
+    {% include 'form_resume.html' %}
+
+    <!--Попап для сообщений-->
+    <div class="modal fade message-popup" tabindex="-1" role="dialog" id="message-modal">
+        <div class="modal-dialog modal-sm" role="document" id="message-modal-window">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p id="message-modal-text">Ну тут типа текст сообщения всякий....</p>
+                        </div>
+                        <div class="col-xs-12 m-t-20">
+                            <button data-dismiss="modal" class="base-smyt-btn" type="button">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- Javascript-->
+    {% compress js %}
+        <script src="{% static 'js/core.js' %}"></script>
+        <script src="{% static 'js/qs-lite.min.js' %}"></script>
+        <script src="{% static 'js/lodash.min.js' %}"></script>
+        <script src="{% static 'js/js.cookie.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+        <script src="{% static 'js/smyt.js' %}"></script>
+        <script src="{% static 'js/forms.js' %}"></script>
+        {% block extra_js %}{% endblock %}
+    {% endcompress %}
+</body>
+</html>

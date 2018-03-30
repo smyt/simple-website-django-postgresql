@@ -1,0 +1,36 @@
+{% load rest_framework %}
+
+<form
+{#        class="rd-mailform"#}
+      data-form-output="form-output-global"
+      data-form-type="contact"
+      method="GET"
+      action="{% url 'vacancy-list' %}">{% csrf_token %}
+
+    <!-- Фильтр -->
+    <div class="range range-justify">
+
+        <div class="cell-lg-2 cell-md-2 cell-xs-12">
+            {% render_field serializer.country serializer.country.style %}
+        </div>
+
+        <div class="cell-lg-2 cell-md-2 cell-xs-12">
+            {% render_field serializer.cities serializer.cities.style %}
+        </div>
+
+        <div class="cell-lg-2 cell-md-2 cell-xs-12">
+            {% render_field serializer.profile serializer.profile.style %}
+        </div>
+
+        <div class="cell-lg-2 cell-md-2 cell-xs-12">
+            {% render_field serializer.experience serializer.experience.style %}
+        </div>
+
+        <div class="cell-lg-2 cell-md-2 cell-xs-12">
+            <button class="btn btn-primary smyt-find-btn" type="submit">Найти</button>
+            <!--<button class="button button-primary smyt-find-btn" type="submit">Найти</button>-->
+        </div>
+
+    </div>
+
+</form>

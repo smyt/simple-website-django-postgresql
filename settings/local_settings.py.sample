@@ -1,0 +1,36 @@
+SECRET_KEY = 'server secret key'
+
+DEBUG = False
+
+COMPRESS_OFFLINE = COMPRESS_ENABLED = False
+
+ALLOWED_HOSTS = []
+
+ADMINS = (
+    ('admin', 'admin@smyt.ru'),
+)
+
+GR_CAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'  # just for testing
+GR_CAPTCHA_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'  # just for testing
+
+EMAIL_HOST = 'smtp.host.for.email'
+EMAIL_PORT = 'email_port'
+EMAIL_FROM = 'somemeail@smyt.ru'
+EMAIL_HOST_USER = 'somemail@smyt.ru'
+EMAIL_HOST_PASSWORD = '*********'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+MAIL_NO_REPLY = 'somemail@smyt.ru'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'ENGINE',
+        'NAME': 'DB_NAME',
+        'USER': 'user',
+        'PASSWORD': 'password',
+        'TEST_CHARSET': 'UTF8',
+        'HOST': 'localhost',
+        'PORT': 'port',
+        'SUPPORTS_TRANSACTIONS': True,
+    },
+}
