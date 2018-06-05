@@ -1,4 +1,4 @@
-{% load rest_framework %}
+{% load rest_framework i18n %}
 
 
 <div class="modal fade send-self-profile" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -8,7 +8,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Пришлите нам свое резюме, и мы обязательно свяжемся с вами!</h4>
+                <h4 class="modal-title">{% trans 'Send us your resume, and we will contact you!' %}</h4>
             </div>
             <div class="modal-body">
                 <form class="rd-mailform grey-chrome-auto-fields"
@@ -34,7 +34,7 @@
 
                         <div class="cell-xs-12 cell-md-6 m-t-20">
                             <div class="file_upload">
-                                <button type="button">Прикрепить резюме</button>
+                                <button type="button">{% trans 'Attach resume' %}</button>
                                 <!--<div>*.doc, *.docx, *.rtf</div>-->
                                 <div>*.doc, *.docx, *.rtf, *.pdf</div>
                                 {% render_field resume_serializer.file resume_serializer.file.style %}
@@ -85,7 +85,7 @@
                         </div>
                         <div class="cell-xs-12 cell-md-6">
                             <div class="form-button">
-                                <button class="base-smyt-btn" type="submit">Отправить</button>
+                                <button class="base-smyt-btn" type="submit">{% trans 'Send' %}</button>
                             </div>
                         </div>
                     </div>

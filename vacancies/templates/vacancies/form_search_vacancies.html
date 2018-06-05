@@ -1,4 +1,4 @@
-{% load rest_framework %}
+{% load rest_framework i18n %}
 
 <form
 {#        class="rd-mailform"#}
@@ -27,8 +27,7 @@
         </div>
 
         <div class="cell-lg-2 cell-md-2 cell-xs-12">
-            <button class="btn btn-primary smyt-find-btn" type="submit">Найти</button>
-            <!--<button class="button button-primary smyt-find-btn" type="submit">Найти</button>-->
+            <button class="btn btn-primary smyt-find-btn" type="submit">{% trans 'Search' %}</button>
         </div>
 
     </div>

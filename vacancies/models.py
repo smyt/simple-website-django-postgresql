@@ -1,34 +1,36 @@
+from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from smart_selects.db_fields import ChainedManyToManyField
-from autoslug import AutoSlugField
 
 from vacancies.managers import PublishedVacanciesManager
 
 
 class Priority(models.Model):
-    priority = models.PositiveIntegerField('Приоритет отображения', default=0,
-                                           help_text='Укажите значения от 1 до 100, где у 100 высший приоритет. '
-                                                     'Если не указать приоритет, он будет равен 0')
+    priority = models.PositiveIntegerField(_('Display priority'), default=0,
+                                           help_text=_('Specify values from 1 to 100, '
+                                                       'where 100 has the highest priority. '
+                                                       'If you do not specify a priority, it will be 0'))
 
     class Meta:
         abstract = True
 
 
 class Slug(models.Model):
-    slug = AutoSlugField('Путь', null=True, unique=True, populate_from='name', editable=True)
+    slug = AutoSlugField(_('Path'), null=True, unique=True, populate_from='name', editable=True)
 
     class Meta:
         abstract = True
 
 
 class Country(Priority, Slug):
-    name = models.CharField('Название страны', max_length=50)
-    name_in_case = models.CharField('Название страны в родительном падеже', max_length=50, default='')
+    name = models.CharField(_('Country name'), max_length=50)
+    name_in_case = models.CharField(_('Country name in parental case'), max_length=50, default='')
 
     class Meta:
-        verbose_name = 'Страна'
-        verbose_name_plural = 'Страны'
+        verbose_name = _('Country')
+        verbose_name_plural = _('Countries')
         ordering = ('-priority', 'name')
 
     def __str__(self):
@@ -36,12 +38,12 @@ class Country(Priority, Slug):
 
 
 class City(Priority, Slug):
-    name = models.CharField('Название города', max_length=50)
-    country = models.ForeignKey(Country, verbose_name='Страна', related_name='cities')
+    name = models.CharField(_('City name'), max_length=50)
+    country = models.ForeignKey(Country, verbose_name=_('Country'), related_name='cities')
 
     class Meta:
-        verbose_name = 'Город'
-        verbose_name_plural = 'Города'
+        verbose_name = _('City')
+        verbose_name_plural = _('Cities')
         ordering = ('-priority', 'name')
 
     def __str__(self):
@@ -49,11 +51,11 @@ class City(Priority, Slug):
 
 
 class Profile(Priority, Slug):
-    name = models.CharField('Название направления', max_length=100)
+    name = models.CharField(_('Profile name'), max_length=100)
 
     class Meta:
-        verbose_name = 'Направление'
-        verbose_name_plural = 'Направления'
+        verbose_name = _('Profile')
+        verbose_name_plural = _('Profiles')
         ordering = ('-priority', 'name')
 
     def __str__(self):
@@ -61,11 +63,11 @@ class Profile(Priority, Slug):
 
 
 class Experience(Priority, Slug):
-    name = models.CharField('Название уровня', max_length=50)
+    name = models.CharField(_('Level experience name'), max_length=50)
 
     class Meta:
-        verbose_name = 'Уровень'
-        verbose_name_plural = 'Уровни'
+        verbose_name = _('Level experience')
+        verbose_name_plural = _('Levels experience')
         ordering = ('-priority', 'name')
 
     def __str__(self):
@@ -73,13 +75,13 @@ class Experience(Priority, Slug):
 
 
 class Vacancy(Priority):
-    name = models.CharField('Название вакансии', max_length=50)
-    text_main = RichTextField('Текст описания для отображения на главной', blank=True, null=True)
-    text_inner = RichTextField('Текст описания внутри вакансии')
-    text_experience = RichTextField('Текст "Опыт и знания')
-    text_desc = RichTextField('Описание работы')
-    text_qualifying = RichTextField('Отборочный цикл')
-    country = models.ForeignKey(Country, verbose_name='Страна')
+    name = models.CharField(_('Vacancy name'), max_length=50)
+    text_main = RichTextField(_('Description text for display on main page'), blank=True, null=True)
+    text_inner = RichTextField(_('Description text for display on vacancy page'))
+    text_experience = RichTextField(_('Description text of experience and knowledge'))
+    text_desc = RichTextField(_('Work description text'))
+    text_qualifying = RichTextField(_('Description text for qualifying'))
+    country = models.ForeignKey(Country, verbose_name=_('Country'))
 
     cities = ChainedManyToManyField(
         City,
@@ -87,22 +89,22 @@ class Vacancy(Priority):
         auto_choose=True,
         chained_field='country',
         chained_model_field='country',
-        verbose_name='Города',
+        verbose_name=_('Cities'),
         blank=True
     )
 
-    profile = models.ForeignKey(Profile, verbose_name='Направление')
-    experience = models.ForeignKey(Experience, verbose_name='Уровень')
-    is_main = models.BooleanField('На главной', default=False)
-    is_published = models.BooleanField('Опубликована', default=False)
-    slug = models.SlugField('Путь', null=True, unique=True)
+    profile = models.ForeignKey(Profile, verbose_name=_('Profile'))
+    experience = models.ForeignKey(Experience, verbose_name=_('Level experience'))
+    is_main = models.BooleanField(_('Show on main'), default=False)
+    is_published = models.BooleanField(_('Is published'), default=False)
+    slug = models.SlugField(_('Path'), null=True, unique=True)
 
     objects = models.Manager()
     published = PublishedVacanciesManager()
 
     class Meta:
-        verbose_name = 'Вакансия'
-        verbose_name_plural = 'Вакансии'
+        verbose_name = _('Vacancy')
+        verbose_name_plural = _('Vacancies')
         ordering = ('-priority', 'name')
 
     def __str__(self):

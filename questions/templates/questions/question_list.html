@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% load question_tags %}
+{% load i18n question_tags %}
 
 {% block content %}
 
-    <!-- Список вопросов Faq-->
+    <!-- question list Faq-->
     <section class="section section-lg bg-white text-center">
         <div class="shell shell-wide">
 
@@ -53,15 +53,14 @@
                 </div>
             </div>
 
-            <!-- Форма вопроса -->
+            <!-- Question form -->
             <div class="range range-xs-center">
                 <div class="cell-xs-12 text-left">
-                    <h3>Нет моего вопроса, но он очень важен для меня!</h3>
+                    <h3>{% trans 'There is no question for me, but it is very important for me!' %}</h3>
 
-                    <p class="smyt-p">Заполните форму ниже, и наши HR-специалисты обязательно ответят, или задайте вопрос в
-                        он-лайн чате.</p>
+                    <p class="smyt-p">{% trans 'Fill out the form below, and our HR-specialists will necessarily answer, or ask a question in on-line chat.' %}</p>
 
-                    <p class="smyt-p">Мы будем рады рассказать все о SMYT!</p>
+                    <p class="smyt-p">{% trans 'We will be happy to tell you all about SMYT!' %}</p>
 
                     {% question_form %}
 

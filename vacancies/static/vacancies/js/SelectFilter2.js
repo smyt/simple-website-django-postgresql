@@ -16,7 +16,7 @@ Requires jQuery, core.js, and SelectBox.js.
 
     window.SelectFilter = {
         init: function(field_id, field_name, is_stacked) {
-            field_name = 'Города';
+            field_name = gettext('Cities');
             if (field_id.match(/__prefix__/)) {
                 // Don't initialize on empty forms.
                 return;
@@ -76,8 +76,8 @@ Requires jQuery, core.js, and SelectBox.js.
             filter_input.id = field_id + '_input';
 
             selector_available.appendChild(from_box);
-            var allCitiesText = 'Выбрать все города на текущий момент',
-                allCitiesTextHelp = 'Нажмите, чтобы выбрать все города на текущий момент(новые города после добавления в справочник нужно будет добавлять вручную)';
+            var allCitiesText = gettext('Select all cities for the moment'),
+                allCitiesTextHelp = gettext('Click to select all cities for the current time (you will have to add new cities manually after adding to the directory)');
             var choose_all = quickElement('a', selector_available, allCitiesText, 'title', allCitiesTextHelp, 'href', '#', 'id', field_id + '_add_all_link');
             choose_all.className = 'selector-chooseall';
 
@@ -108,8 +108,8 @@ Requires jQuery, core.js, and SelectBox.js.
 
             var to_box = quickElement('select', selector_chosen, '', 'id', field_id + '_to', 'multiple', 'multiple', 'size', from_box.size, 'name', from_box.getAttribute('name'));
             to_box.className = 'filtered';
-            var allCitiesRemoveAllText = 'Выбрать города из справочника',
-                allCitiesRemoveAllTextHelp = 'Нажмите чтобы выбрать города из справочника(новые города после добавления в справочник выберутся автоматически)';
+            var allCitiesRemoveAllText = gettext('Select cities from dictionary'),
+                allCitiesRemoveAllTextHelp = gettext('Click to select cities from the directory (new cities after adding to the directory will be selected automatically)');
             var clear_all = quickElement('a', selector_chosen, allCitiesRemoveAllText, 'title', allCitiesRemoveAllTextHelp, 'href', '#', 'id', field_id + '_remove_all_link');
             clear_all.className = 'selector-clearall';
 

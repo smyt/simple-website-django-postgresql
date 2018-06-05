@@ -18,8 +18,8 @@ class SeoHelperMixin:
         if self.page_name_for_seo:
             page = self.get_seo_object()
             if page and country and city and vacancy_name:
-                page.title = page.title.replace(VACANCY_TITLE, vacancy_name)\
-                    .replace(COUNTRY_NAME, country)\
+                page.title = page.title.replace(VACANCY_TITLE, vacancy_name) \
+                    .replace(COUNTRY_NAME, country) \
                     .replace(CITY_NAME, city)
             return page
         return None

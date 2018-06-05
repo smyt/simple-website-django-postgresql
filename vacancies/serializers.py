@@ -1,3 +1,5 @@
+from django.utils.text import format_lazy
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 
@@ -5,32 +7,32 @@ from smyt_careers import settings
 from vacancies.messages import FIO_ERRORS_MESSAGES, EMAIL_ERRORS_MESSAGES, SKYPE_ERRORS_MESSAGES, \
     PHONE_ERRORS_MESSAGES, FILE_ERROR_TEXT, UPLOADED_FILE_ERROR_TEXT
 from vacancies.models import Vacancy, Country, City, Profile, Experience
-from vacancies.options import ALL_CITIES, ALL_COUNTRIES, ANY_PROFILE, ANY_EXPERIENCE
+from vacancies.options import ALL_CITIES
 from vacancies.utils import get_text_count_cities
 from vacancies.validators import phone_validator, skype_validator
 
 
 class VacancySearchSerializer(serializers.Serializer):
     country = serializers.SlugRelatedField(queryset=Country.objects.all(), required=False, allow_null=True,
-                                           label='Страна',
+                                           label=_('Country'),
                                            slug_field='slug',
                                            style={'template': 'forms/fields/select.html',
-                                                  'empty_label': ALL_COUNTRIES})
+                                                  'empty_label': _('All countries')})
     cities = serializers.SlugRelatedField(queryset=City.objects.none(), required=False, allow_null=True,
-                                          label='Город',
+                                          label=_('City'),
                                           slug_field='slug',
                                           style={'template': 'forms/fields/select.html',
                                                  'empty_label': ALL_CITIES})
     profile = serializers.SlugRelatedField(queryset=Profile.objects.all(), required=False, allow_null=True,
-                                           label='Направление',
+                                           label=_('Profile'),
                                            slug_field='slug',
                                            style={'template': 'forms/fields/select.html',
-                                                  'empty_label': ANY_PROFILE})
+                                                  'empty_label': _('Any profile')})
     experience = serializers.SlugRelatedField(queryset=Experience.objects.all(), required=False, allow_null=True,
-                                              label='Уровень',
+                                              label=_('Level experience'),
                                               slug_field='slug',
                                               style={'template': 'forms/fields/select.html',
-                                                     'empty_label': ANY_EXPERIENCE})
+                                                     'empty_label': _('Any experience')})
 
     def _filter_cities(self, request):
         country = request.query_params.get('country', None)
@@ -53,13 +55,13 @@ class VacancySearchSerializer(serializers.Serializer):
 
 
 class ComplaintSerializer(serializers.Serializer):
-    fio = serializers.CharField(label='Имя и фамилия', min_length=3, error_messages=FIO_ERRORS_MESSAGES,
+    fio = serializers.CharField(label=_('Name and surname'), min_length=3, error_messages=FIO_ERRORS_MESSAGES,
                                 style={'template': 'forms/fields/input.html',
                                        'constraints': '@Name @Required'})
-    email = serializers.EmailField(label='E-mail', error_messages=EMAIL_ERRORS_MESSAGES,
+    email = serializers.EmailField(label=_('E-mail'), error_messages=EMAIL_ERRORS_MESSAGES,
                                    style={'template': 'forms/fields/input.html',
                                           'constraints': '@Email @Required'})
-    comment = serializers.CharField(label='Написать вопрос здесь',
+    comment = serializers.CharField(label=_('Write question here'),
                                     style={'template': 'forms/fields/textarea.html', 'constraints': '@Required'})
 
     def __init__(self, *args, **kwargs):
@@ -80,22 +82,25 @@ class ResumeSerializer(ComplaintSerializer):
     ALLOWED_CONTENT_TYPES = ['application/msword', 'application/pdf', 'text/rtf',
                              'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
 
-    file = serializers.FileField(label='Резюме', required=False,
+    file = serializers.FileField(label=_('Resume'), required=False,
                                  style={'template': 'forms/fields/file.html',
                                         'data_link_field': 'link',
-                                        'constraints': '@ProfileFileExt(extensions="doc,docx,rtf,pdf") @FileSize(maxFileSize={}) @Together(message="Прикрепите файл")'.format(
-                                            settings.FILE_UPLOAD_MAX_MEMORY_SIZE)})
-    link = serializers.CharField(label='или указать ссылкой', required=False,
+                                        'constraints': format_lazy(
+                                            '@ProfileFileExt(extensions="doc,docx,rtf,pdf") @FileSize(maxFileSize={max_size}) @Together(message="{message}")',
+                                            max_size=settings.FILE_UPLOAD_MAX_MEMORY_SIZE, message=_('Attach file'))})
+    link = serializers.CharField(label=_('or paste link'), required=False,
                                  style={'template': 'forms/fields/input.html',
                                         'data_link_field': 'file',
-                                        'constraints': '@Http @Together(message="или укажите ссылку на резюме")'})
-    skype = serializers.CharField(label='Skype', min_length=3, error_messages=SKYPE_ERRORS_MESSAGES,
+                                        'constraints': format_lazy('@Http @Together(message="{message}")',
+                                                                   message=_('or paste link to CV'))
+                                        })
+    skype = serializers.CharField(label=_('Skype'), min_length=3, error_messages=SKYPE_ERRORS_MESSAGES,
                                   validators=[skype_validator], required=False,
                                   style={'template': 'forms/fields/input.html', 'constraints': '@Skype'})
-    phone = serializers.CharField(label='Телефон', min_length=6, max_length=20, error_messages=PHONE_ERRORS_MESSAGES,
+    phone = serializers.CharField(label=_('Phone'), min_length=6, max_length=20, error_messages=PHONE_ERRORS_MESSAGES,
                                   validators=[phone_validator], style={'template': 'forms/fields/input.html',
                                                                        'constraints': '@Phone @Required'})
-    position = serializers.CharField(label='Укажите желаемую позицию', required=False,
+    position = serializers.CharField(label='Write appropriate position', required=False,
                                      style={'template': 'forms/fields/input.html'})
 
     def __init__(self, position=None, *args, **kwargs):
@@ -103,9 +108,9 @@ class ResumeSerializer(ComplaintSerializer):
         if position:
             self.fields['position'].initial = position
             self.fields['position'].style['input_type'] = 'hidden'
-        self.fields['phone'].label = 'Телефон в формате +78123097284'
+        self.fields['phone'].label = _('Format phone number +78123097284')
         self.fields['comment'].required = False
-        self.fields['comment'].label = 'Комментарий'
+        self.fields['comment'].label = _('Comment')
         self.fields['comment'].style.update({'constraints': ''})
 
     def validate_file(self, value):
@@ -138,7 +143,7 @@ class VacancySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Vacancy
-        fields = ('name', 'country', 'slug', 'profile', 'is_main', 'text_count_cities', 'url', 'text_main', 'cities', )
+        fields = ('name', 'country', 'slug', 'profile', 'is_main', 'text_count_cities', 'url', 'text_main', 'cities',)
 
     @staticmethod
     def get_text_count_cities(obj):
@@ -146,6 +151,3 @@ class VacancySerializer(serializers.ModelSerializer):
         # if only one city, then get and output this
         city = obj.cities.all().first().name if count == 1 else None
         return get_text_count_cities(count, city)
-
-
-

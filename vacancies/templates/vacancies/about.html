@@ -1,20 +1,19 @@
-{% load static %}
-<!-- О работе в компании -->
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<!-- {% trans 'About work in the company' %} -->
 <section class="section section-lg bg-gray-lighter text-center">
     <div class="shell shell-wide">
-        <h3>О работе в компании</h3>
+        <h3>{% trans 'About work in the company' %}</h3>
 
         <!-- XS devices < 768 -->
         <div class="range range-30 range-xs-center hidden-sm hidden-md hidden-lg">
             <div class="col-xs-12 m-t-10">
                 <div class="bg-promo-main">
-                    <h1>Наша основная ценность - <span>команда СМИТ!</span></h1>
-                    <p>Не следует, однако забыбвать, что постоянный количественный рост и сфера нашей активности
-                        требует от нас анализа системы обучения кадров, соответствует насущным потребностям.
-                        Товарищи! Укрепление и развитие структуры в значительной степени обуславливает создание
-                        существенных финансовых и административных условий. Значимость эитх проблем настолько
-                        очевидна, что новая модель организационной деятельности требует определения и
-                        уточнения.</p>
+                    <h2 class="single-line-caption">{% trans 'Our main value' %} - <span>{% trans 'SMYT Team!' %}</span></h2>
+                    <p>
+                        {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_1.html' %}
+                    </p>
                 </div>
             </div>
             <div class="col-xs-12 m-t-10">
@@ -23,7 +22,7 @@
                         <img src="{% static 'images/promo-clock.png' %}"/>
                     </div>
                     <div class="promo-text">
-                        <h2 class="single-line-caption">Гибкий график</h2>
+                        <h2 class="single-line-caption">{% trans 'Flexible schedule' %}</h2>
                         <p></p>
                     </div>
                 </div>
@@ -34,7 +33,7 @@
                         <img src="{% static 'images/promo-laptop.png' %}"/>
                     </div>
                     <div class="promo-text">
-                        <h2 class="single-line-caption one-line-caption">Удаленная работа</h2>
+                        <h2 class="single-line-caption one-line-caption">{% trans 'Remote work' %}</h2>
                         <p></p>
                     </div>
                 </div>
@@ -45,7 +44,7 @@
                         <img src="{% static 'images/promo-display.png' %}"/>
                     </div>
                     <div class="promo-text">
-                        <h2 class="double-line-caption">Комфортное тихое рабочее место</h2>
+                        <h2 class="double-line-caption">{% trans 'Comfortable quiet work place' %}</h2>
                         <p></p>
                     </div>
                 </div>
@@ -56,7 +55,7 @@
                         <img src="{% static 'images/promo-shirt.png' %}"/>
                     </div>
                     <div class="promo-text">
-                        <h2 class="double-line-caption">Свободный стиль одежды</h2>
+                        <h2 class="double-line-caption">{% trans 'Any style clothes' %}</h2>
                         <p></p>
                     </div>
                 </div>
@@ -67,7 +66,7 @@
                         <img src="{% static 'images/promo-english.png' %}"/>
                     </div>
                     <div class="promo-text">
-                        <h2 class="single-line-caption">Английский язык</h2>
+                        <h2 class="single-line-caption">{% trans 'English language' %}</h2>
                         <p></p>
                     </div>
                 </div>
@@ -87,10 +86,10 @@
                                 <img src="{% static 'images/promo-clock.png' %}"/>
                             </div>
                             <div class="promo-text">
-                                <h2 class="single-line-caption">Гибкий график</h2>
-                                <p>Самостоятельно выбирайте для работы комфортное время. Мы ориентированы не на
-                                    процесс, а на результат, поэтому требование сидеть за компьютером строго с 8 до
-                                    17 часов отсутствует.</p>
+                                <h2 class="single-line-caption">{% trans 'Flexible schedule' %}</h2>
+                                <p>
+                                    {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_1.html' %}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -101,9 +100,10 @@
                                 <img src="{% static 'images/promo-laptop.png' %}"/>
                             </div>
                             <div class="promo-text">
-                                <h2 class="single-line-caption">Удаленная работа</h2>
-                                <p>Вы можете работать из любой точки мира, где есть компьютер со стабильным доступом
-                                    в интернет.</p>
+                                <h2 class="single-line-caption">{% trans 'Remote work' %}</h2>
+                                <p>
+                                    {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_3.html' %}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -114,9 +114,10 @@
                                 <img src="{% static 'images/promo-display.png' %}"/>
                             </div>
                             <div class="promo-text">
-                                <h2 class="double-line-caption">Комфортное тихое рабочее место</h2>
-                                <p>Мы внимательно относимся к потребностям наших работников и готовы оборудовать
-                                    рабочее место в нашем офисе с учетом пожеланий каждого сотрудника.</p>
+                                <h2 class="double-line-caption">{% trans 'Comfortable quiet work place' %}</h2>
+                                <p>
+                                    {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_4.html' %}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -127,10 +128,10 @@
                                 <img src="{% static 'images/promo-shirt.png' %}"/>
                             </div>
                             <div class="promo-text">
-                                <h2 class="double-line-caption">Свободный стиль одежды</h2>
-                                <p>Мы не хотим ограничивать своих офисных сотрудников дресс-кодом, требованиями к
-                                    длине или цвету волос, размеру или виду татуировок. Вам не нужно отказываться от
-                                    своего стиля, чтобы угодить нашим вкусам.</p>
+                                <h2 class="double-line-caption">{% trans 'Any style clothes' %}</h2>
+                                <p>
+                                    {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_6.html' %}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -144,13 +145,10 @@
                 <div class="row">
                     <div id="md-promo-main" class="col-xs-12 m-t-10 p-l-5">
                         <div class="bg-promo-main">
-                            <h1>Наша основная ценность - <span>команда СМИТ!</span></h1>
-                            <p>Мы гордимся тем, что в нашей команде здоровая атмосфера. Нам жаль тратить время на
-                                интриги и сплетни, ведь существует множество других интересных тем: курс Биткоина,
-                                книги Пелевина, новая серия Игры престолов или Мистера Робота, новые события в
-                                любимых вселенных от Fallout до Call of Duty. У нас нет ранговой иерархии, можно
-                                свободно обращаться к каждому из сотрудников, какую бы должность он не занимал.
-                                Любой из руководителей будет рад услышать и обсудить ваши идеи и предложения.</p>
+                            <h1>{% trans 'Our main value' %} - <span>{% trans 'SMYT Team!' %}</span></h1>
+                            <p>
+                                {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_2.html' %}
+                            </p>
                         </div>
                     </div>
                     <div class="col-xs-12 m-t-10 p-l-5">
@@ -159,10 +157,10 @@
                                 <img src="{% static 'images/promo-english.png' %}"/>
                             </div>
                             <div class="promo-text">
-                                <h2 class="single-line-caption">Английский язык</h2>
-                                <p>Мы поддерживаем желание сотрудников учиться и развиваться. Для этого мы тщательно
-                                    подбирали высококвалифицированных преподавателей, филологов и носителей языка.
-                                    Мы подбираем удобное время и программу обучения для каждого студента.</p>
+                                <h2 class="single-line-caption">{% trans 'English language' %}</h2>
+                                <p>
+                                    {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_5.html' %}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -184,25 +182,20 @@
                                 <img src="{% static 'images/promo-clock.png' %}"/>
                             </div>
                             <div class="promo-text">
-                                <h2 class="single-line-caption">Гибкий график</h2>
-                                <p>Самостоятельно выбирайте для работы комфортное время. Мы ориентированы не на
-                                    процесс, а на результат, поэтому требование сидеть за компьютером строго с 8 до
-                                    17 часов отсутствует. Команда обсуждает задачи, договариваясь о времени удобном
-                                    для всех, оставшуюся работу выполняйте в ваш персональный период максимальной
-                                    продуктивности.</p>
+                                <h2 class="single-line-caption">{% trans 'Flexible schedule' %}</h2>
+                                <p>
+                                    {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_1.html' %}
+                                </p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6 pull-right p-lr-5">
                         <div id="lg-promo-main" class="bg-promo-main">
-                            <h1>Наша основная ценность - <span>команда СМИТ!</span></h1>
-                            <p>Мы гордимся тем, что в нашей команде здоровая атмосфера. Нам жаль тратить время на
-                                интриги и сплетни, ведь существует множество других интересных тем: курс Биткоина,
-                                книги Пелевина, новая серия Игры престолов или Мистера Робота, новые события в
-                                любимых вселенных от Fallout до Call of Duty. У нас нет ранговой иерархии, можно
-                                свободно обращаться к каждому из сотрудников, какую бы должность он не занимал.
-                                Любой из руководителей будет рад услышать и обсудить ваши идеи и предложения.</p>
+                            <h1>{% trans 'Our main value' %} - <span>{% trans 'SMYT Team!' %}</span></h1>
+                            <p>
+                                {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_2.html' %}
+                            </p>
                         </div>
                     </div>
 
@@ -212,9 +205,10 @@
                                 <img src="{% static 'images/promo-laptop.png' %}"/>
                             </div>
                             <div class="promo-text">
-                                <h2 class="single-line-caption">Удаленная работа</h2>
-                                <p>Вы можете работать из любой точки мира, где есть компьютер со стабильным доступом
-                                    в интернет.</p>
+                                <h2 class="single-line-caption">{% trans 'Remote work' %}</h2>
+                                <p>
+                                    {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_3.html' %}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -228,12 +222,10 @@
                                 <img src="{% static 'images/promo-display.png' %}"/>
                             </div>
                             <div class="promo-text">
-                                <h2 class="double-line-caption">Комфортное тихое рабочее место</h2>
-                                <p>Функциональность и продуктивность - вот девиз обстановки нашего офиса. Нужен
-                                    второй монитор или удобное кресло, поддерживающее спину? Мы внимательно
-                                    относимся к потребностям наших работников и готовы оборудовать рабочее место в
-                                    нашем офисе с учетом пожеланий каждого сотрудника. Приятным бонусом станет
-                                    дружеская атмосфера в коллективе.</p>
+                                <h2 class="double-line-caption">{% trans 'Comfortable quiet work place' %}</h2>
+                                <p>
+                                    {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_4.html' %}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -249,11 +241,10 @@
                                 <img src="{% static 'images/promo-english.png' %}"/>
                             </div>
                             <div class="promo-text">
-                                <h2 class="single-line-caption">Английский язык</h2>
-                                <p>Мы поддерживаем желание сотрудников учиться и развиваться. Для этого мы тщательно
-                                    подбирали высококвалифицированных преподавателей, филологов, и носителей языка.
-                                    Занятия проходят в скайпе: индивидуально и в парах. Мы подбираем удобное время и
-                                    программу обучения для каждого студента. Платим мы, а учитесь вы!</p>
+                                <h2 class="single-line-caption">{% trans 'English language' %}</h2>
+                                <p>
+                                    {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_5.html' %}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -263,11 +254,10 @@
                                 <img src="{% static 'images/promo-shirt.png' %}"/>
                             </div>
                             <div class="promo-text">
-                                <h2 class="double-line-caption">Свободный стиль одежды</h2>
-                                <p>Вам не придется добавлять в свой гардероб “белый верх и черный низ”, а также
-                                    учиться вязать идеальный виндзорский узел. Мы не хотим ограничивать своих
-                                    офисных сотрудников дресс-кодом, требованиями к длине или цвету волос, размеру
-                                    или виду татуировок.</p>
+                                <h2 class="double-line-caption">{% trans 'Any style clothes' %}</h2>
+                                <p>
+                                    {% include 'vacancies/about_template_lang.html' with NAME_TEMPLATE='/advantage_6.html' %}
+                                </p>
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <section class="section section-lg bg-white text-center">
     <div class="shell shell-wide">
         <div class="range range-50 range-md-center">
@@ -40,6 +42,6 @@
         </div>
     </div>
     <div class="shell shell-wide text-center">
-        <a href="{% url 'question-list' %}" class="button button-sm button-primary">Посмотреть все вопросы</a>
+        <a href="{% url 'question-list' %}" class="button button-sm button-primary">{% trans 'View all questions' %}</a>
     </div>
 </section>

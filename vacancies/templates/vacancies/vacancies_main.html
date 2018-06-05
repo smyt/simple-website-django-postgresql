@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
-{% load static rest_framework vacancies_tags question_tags %}
+{% load i18n static rest_framework vacancies_tags question_tags %}
 
 {% block content %}
-    <!-- Вакансии -->
+    <!-- {% trans 'Vacancies' %} -->
     <section class="section section-lg bg-white text-center sm-p-t">
         <div class="shell shell-wide">
 
-            <h3>Наши вакансии</h3>
+            <h3>{% trans 'Our vacancies' %}</h3>
 
             <div class="divider divider-default"></div>
 
-            <!-- Фильтр -->
+            <!-- {% trans 'Filter' %} -->
             {% search_filter %}
 
         </div>
@@ -19,7 +19,7 @@
 
         <div class="shell shell-wide text-center">
             <a href="{% url 'vacancy-list' %}"
-               class="scroll button button-sm button-primary with-lato">Посмотреть все открытые вакансии</a>
+               class="scroll button button-sm button-primary with-lato">{% trans 'View all open vacancies' %}</a>
         </div>
 
     </section>

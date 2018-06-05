@@ -1,6 +1,8 @@
-{% load static compress seopages_tags %}
+{% load static compress seopages_tags i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
 <!DOCTYPE html>
-<html class="wide wow-animation" lang="en">
+<html class="wide wow-animation" lang="{{ LANGUAGE_CODE }}">
 <head>
     <!-- Site Title-->
     {% block head %}{% generate_seo %}{% endblock %}
@@ -8,12 +10,12 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <!--мета теги для шаринга в соц. сетях-->
+    <!--meta tags for social networks-->
 	<meta property="og:site_name" content="SMYT Careers!"/>
-	<meta property="og:title" content="Сайт карьеры в компании SMYT!"/>
+	<meta property="og:title" content="{% trans 'Career site in Smyt company' %}"/>
 	<meta property="og:url" content="{{ request.build_absolute_uri }}"/>
 	<meta property="og:description"
-	      content="Хотите работать у нас? Здесь актуальные вакансии и информация о работе в SMYT."/>
+	      content="{% trans 'Do you want to work with us? Here are the current vacancies and information about working in SMYT.' %}"/>
 
 	<link rel='image_src' href="{% static 'images/mess_smyt_small.png' %}">
 	<meta property="og:image" itemprop="image" content="{% static 'images/mess_smyt_small.png' %}"/>
@@ -73,6 +75,7 @@
 	<!-- /Yandex.Metrika counter -->
 
 </head>
+
 <body>
 
 <!-- Page preloader-->
@@ -106,17 +109,17 @@
     <!--Форма отправить резюме-->
     {% include 'form_resume.html' %}
 
-    <!--Попап для сообщений-->
+    <!--{% trans 'Popup for messages' %}-->
     <div class="modal fade message-popup" tabindex="-1" role="dialog" id="message-modal">
         <div class="modal-dialog modal-sm" role="document" id="message-modal-window">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-xs-12">
-                            <p id="message-modal-text">Ну тут типа текст сообщения всякий....</p>
+                            <p id="message-modal-text">{% trans 'text messages' %}</p>
                         </div>
                         <div class="col-xs-12 m-t-20">
-                            <button data-dismiss="modal" class="base-smyt-btn" type="button">OK</button>
+                            <button data-dismiss="modal" class="base-smyt-btn" type="button">{% trans 'OK' %}</button>
                         </div>
                     </div>
                 </div>
@@ -137,5 +140,8 @@
         <script src="{% static 'js/forms.js' %}"></script>
         {% block extra_js %}{% endblock %}
     {% endcompress %}
+
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+
 </body>
 </html>

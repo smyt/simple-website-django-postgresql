@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-15 11:14+0300\n"
+"POT-Creation-Date: 2018-05-04 15:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,21 +20,595 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: settings/base.py:124 vacancies/templates/vacancies/vacancy_list.html:15
+#: questions/apps.py:7 questions/models.py:33
+msgid "Questions"
+msgstr "Вопросы"
+
+#: questions/models.py:10
+msgid "Category name"
+msgstr "Название категории"
+
+#: questions/models.py:16 questions/models.py:27
+msgid "Questions section"
+msgstr "Раздел вопросов"
+
+#: questions/models.py:17
+msgid "Questions sections"
+msgstr "Разделы вопросов"
+
+#: questions/models.py:25
+msgid "Question text"
+msgstr "Описание работы"
+
+#: questions/models.py:26
+msgid "Answer text"
+msgstr "Текст ответа"
+
+#: questions/models.py:28 vacancies/models.py:99
+msgid "Is published"
+msgstr "Опубликована"
+
+#: questions/models.py:29 vacancies/admin.py:90 vacancies/models.py:98
+msgid "Show on main"
+msgstr "Показать на главной"
+
+#: questions/models.py:32
+msgid "Question"
+msgstr "Вопрос"
+
+#: questions/templates/questions/question_list.html:59
+msgid "There is no question for me, but it is very important for me!"
+msgstr "Нет моего вопроса, но он очень важен для меня!"
+
+#: questions/templates/questions/question_list.html:61
+msgid ""
+"Fill out the form below, and our HR-specialists will necessarily answer, or "
+"ask a question in on-line chat."
+msgstr ""
+"Заполните форму ниже, и наши HR-специалисты обязательно ответят, или задайте "
+"вопрос в он-лайн чате."
+
+#: questions/templates/questions/question_list.html:63
+msgid "We will be happy to tell you all about SMYT!"
+msgstr "Мы будем рады рассказать все о SMYT!"
+
+#: questions/templates/questions/tags/question_form.html:36
+#: vacancies/templates/vacancies/contacts.html:121
+msgid "Ask"
+msgstr "Спросить"
+
+#: questions/templates/questions/tags/questions_main.html:45
+msgid "View all questions"
+msgstr "Посмотреть все вопросы"
+
+#: seo_pages/admin.py:11 vacancies/models.py:106
+msgid "Vacancy"
+msgstr "Вакансия"
+
+#: seo_pages/apps.py:7
+msgid "Seo for site"
+msgstr "Сео для сайта"
+
+#: seo_pages/models.py:9
+msgid "Site main page"
+msgstr "Главная страница сайта"
+
+#: seo_pages/models.py:10
+msgid "Site page with vacancy list"
+msgstr "Страница со списком вакансий"
+
+#: seo_pages/models.py:11
+msgid "Site page with vacancy page"
+msgstr "Страница с вакансией сайта"
+
+#: seo_pages/models.py:12
+msgid "Site page with question list"
+msgstr "Страница со списком вопросов"
+
+#: seo_pages/models.py:14
+msgid "Type page"
+msgstr "Тип страницы"
+
+#: seo_pages/models.py:15
+msgid "Title page"
+msgstr "Заголовок страницы"
+
+#: seo_pages/models.py:20
+msgid "Site page"
+msgstr "Страница сайта"
+
+#: seo_pages/models.py:21
+msgid "Site pages"
+msgstr "Страницы сайта"
+
+#: settings/base.py:147
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
-#: settings/base.py:125
+#: settings/base.py:148 settings/local_settings.py:29
 msgid "English"
+msgstr "Английский"
+
+#: templates/404.html:10
+msgid "Sorry, the requested page is not found"
+msgstr "Извините, запрашиваемая вами страница не найдена"
+
+#: templates/404.html:11
+msgid "Error 404"
+msgstr "Ошибка 404"
+
+#: templates/404.html:12
+msgid "Perhaps you were mistaken with the address or the page was moved."
+msgstr "Возможно вы ошиблись адресом или страница была перемещена."
+
+#: templates/404.html:13
+msgid "View all jobs"
+msgstr "Посмотреть все вакансии"
+
+#: templates/base.html:13
+msgid "Career site in Smyt company"
+msgstr "Сайт карьеры в компании SMYT!"
+
+#: templates/base.html:16
+msgid ""
+"Do you want to work with us? Here are the current vacancies and information "
+"about working in SMYT."
+msgstr ""
+"Хотите работать у нас? Здесь актуальные вакансии и информация о работе в "
+"SMYT."
+
+#: templates/base.html:109
+msgid "Popup for messages"
+msgstr "Popup для сообщений"
+
+#: templates/base.html:116
+msgid "text messages"
+msgstr "Текст сообщений"
+
+#: templates/base.html:119
+msgid "OK"
 msgstr ""
 
-#: vacancies/templates/vacancies/vacancy_list.html:19
+#: templates/form_resume.html:11
+msgid "Send us your resume, and we will contact you!"
+msgstr "Пришлите нам свое резюме, и мы обязательно свяжемся с вами!"
+
+#: templates/form_resume.html:37
+msgid "Attach resume"
+msgstr "Прикрепить резюме"
+
+#: templates/form_resume.html:88
+#: vacancies/templates/vacancies/vacancy_detail.html:135
+msgid "Send"
+msgstr "Отправить"
+
+#: templates/header.html:28 vacancies/apps.py:7 vacancies/models.py:107
+#: vacancies/templates/vacancies/vacancies_main.html:5
+msgid "Vacancies"
+msgstr "Вакансии"
+
+#: templates/header.html:30
+msgid "Faq"
+msgstr ""
+
+#: templates/header.html:32 vacancies/templates/vacancies/contacts.html:3
+#: vacancies/templates/vacancies/contacts.html:7
+msgid "Contacts"
+msgstr "Контакты"
+
+#: templates/header.html:57
+msgid "Send resume"
+msgstr "Отправить резюме"
+
+#: users/admin.py:16
+msgid "Groups"
+msgstr "Группы"
+
+#: vacancies/admin.py:48 vacancies/admin.py:69 vacancies/models.py:46
+#: vacancies/models.py:92
+msgid "Cities"
+msgstr "Города"
+
+#: vacancies/admin.py:72
+msgid "Count updated vacancies: %(count)."
+msgstr "Количество обновленных вакансий: %(count)."
+
+#: vacancies/admin.py:78
+msgid "Publish selected"
+msgstr "Опубликовать выбранные"
+
+#: vacancies/admin.py:84
+msgid "Unpublish selected"
+msgstr "Снять публикацию с выбранных"
+
+#: vacancies/admin.py:96
+msgid "Hide on main page"
+msgstr "Скрыть на главной странице"
+
+#: vacancies/messages.py:3
+msgid "This field is required"
+msgstr "Данное поле является обязательным для заполнения"
+
+#: vacancies/messages.py:4
+msgid "Input correct data"
+msgstr "Введите корретные данные"
+
+#: vacancies/messages.py:12
+msgid "Input correct skype login"
+msgstr "Введите верный логин Skype"
+
+#: vacancies/messages.py:20
+msgid "Input correct phone number"
+msgstr "Введите верный номер телефона"
+
+#: vacancies/messages.py:30
+msgid "Wrong e-mail format, Make sure it matches xxxxx@xxxxx.xxx"
+msgstr ""
+"Неверный формат e-mail, убедитесь что он соответствует шаблону xxxxx@xxxxx."
+"xxx"
+
+#: vacancies/messages.py:33
+msgid "Captcha error text"
+msgstr "Ошибка при проверке каптчи"
+
+#: vacancies/messages.py:35
+msgid "Form sent successfully. Please, wait for an answer soon."
+msgstr ""
+"Форма успешно отправлена. Ожидайте, пожалуйста, ответ в ближайшее время."
+
+#: vacancies/messages.py:36
+msgid ""
+"Your claim was successfully sent to the email of the company Director. We "
+"will take action as soon as possible. Thank you for contacting us!"
+msgstr ""
+"Ваша претензия была успешно отправлена на email Директора компании. 'Мы "
+"примем меры в кратчайшие сроки. Спасибо за обращение!"
+
+#: vacancies/messages.py:39
+msgid "Wrong type file"
+msgstr "Неверный тип файла"
+
+#: vacancies/messages.py:40
+msgid "Max uploaded file size is 5Mb"
+msgstr "Вы можете загрузить файл размером не более 5Мб"
+
+#: vacancies/models.py:11
+msgid "Display priority"
+msgstr "Приоритет отображения"
+
+#: vacancies/models.py:12
+msgid ""
+"Specify values from 1 to 100, where 100 has the highest priority. If you do "
+"not specify a priority, it will be 0"
+msgstr ""
+"Укажите значения от 1 до 100, где у 100 высший приоритет.Если не указать "
+"приоритет, он будет равен 0"
+
+#: vacancies/models.py:21 vacancies/models.py:100
+msgid "Path"
+msgstr "Путь"
+
+#: vacancies/models.py:28
+msgid "Country name"
+msgstr "Название страны"
+
+#: vacancies/models.py:29
+msgid "Country name in parental case"
+msgstr "Название страны в родительском падаже"
+
+#: vacancies/models.py:32 vacancies/models.py:42 vacancies/models.py:84
+#: vacancies/serializers.py:17
+msgid "Country"
+msgstr "Страна"
+
+#: vacancies/models.py:33
+msgid "Countries"
+msgstr "Страны"
+
+#: vacancies/models.py:41
+msgid "City name"
+msgstr "Название города"
+
+#: vacancies/models.py:45 vacancies/serializers.py:22
+msgid "City"
+msgstr "Город"
+
+#: vacancies/models.py:54
+msgid "Profile name"
+msgstr "Название направления"
+
+#: vacancies/models.py:57 vacancies/models.py:96 vacancies/serializers.py:27
+msgid "Profile"
+msgstr "Направление"
+
+#: vacancies/models.py:58
+msgid "Profiles"
+msgstr "Направления"
+
+#: vacancies/models.py:66
+msgid "Level experience name"
+msgstr "Название уровня"
+
+#: vacancies/models.py:69 vacancies/models.py:97 vacancies/serializers.py:32
+msgid "Level experience"
+msgstr "Уровень"
+
+#: vacancies/models.py:70
+msgid "Levels experience"
+msgstr "Уровни"
+
+#: vacancies/models.py:78
+msgid "Vacancy name"
+msgstr "Название вакансии"
+
+#: vacancies/models.py:79
+msgid "Description text for display on main page"
+msgstr "Описание вакансии для отображения на главной"
+
+#: vacancies/models.py:80
+msgid "Description text for display on vacancy page"
+msgstr "Описание вакансии для отображения на странице вакансии"
+
+#: vacancies/models.py:81
+msgid "Description text of experience and knowledge"
+msgstr "Текст 'Опыт и Знания'"
+
+#: vacancies/models.py:82
+msgid "Work description text"
+msgstr "Описание работы"
+
+#: vacancies/models.py:83
+msgid "Description text for qualifying"
+msgstr "Описание квалификации для работы"
+
+#: vacancies/options.py:3
+msgid "All cities"
+msgstr "Все города"
+
+#: vacancies/serializers.py:20
+msgid "All countries"
+msgstr "Все страны"
+
+#: vacancies/serializers.py:30
+msgid "Any profile"
+msgstr "Все направления"
+
+#: vacancies/serializers.py:35
+msgid "Any experience"
+msgstr "Любой уровень"
+
+#: vacancies/serializers.py:58
+msgid "Name and surname"
+msgstr "Имя и фамилия"
+
+#: vacancies/serializers.py:61
+msgid "E-mail"
+msgstr ""
+
+#: vacancies/serializers.py:64
+msgid "Write question here"
+msgstr "Написать вопрос здесь"
+
+#: vacancies/serializers.py:85
+msgid "Resume"
+msgstr "Резюме"
+
+#: vacancies/serializers.py:90
+msgid "Attach file"
+msgstr "Прикрепить файл"
+
+#: vacancies/serializers.py:91
+msgid "or paste link"
+msgstr "или указать ссылкой"
+
+#: vacancies/serializers.py:95
+msgid "or paste link to CV"
+msgstr "или укажите ссылку на резюме"
+
+#: vacancies/serializers.py:97
+msgid "Skype"
+msgstr ""
+
+#: vacancies/serializers.py:100
+msgid "Phone"
+msgstr "Телефон"
+
+#: vacancies/serializers.py:111
+msgid "Format phone number +78123097284"
+msgstr "Телефон в формате +78123097284"
+
+#: vacancies/serializers.py:113
+msgid "Comment"
+msgstr "Комментарий"
+
+#: vacancies/templates/vacancies/about.html:4
+#: vacancies/templates/vacancies/about.html:7
+msgid "About work in the company"
+msgstr "О работе в компании"
+
+#: vacancies/templates/vacancies/about.html:13
+#: vacancies/templates/vacancies/about.html:148
+#: vacancies/templates/vacancies/about.html:195
+msgid "Our main value"
+msgstr "Наша основная ценность"
+
+#: vacancies/templates/vacancies/about.html:13
+#: vacancies/templates/vacancies/about.html:148
+#: vacancies/templates/vacancies/about.html:195
+msgid "SMYT Team!"
+msgstr "команда СМИТ!"
+
+#: vacancies/templates/vacancies/about.html:25
+#: vacancies/templates/vacancies/about.html:89
+#: vacancies/templates/vacancies/about.html:185
+msgid "Flexible schedule"
+msgstr "Гибкий график"
+
+#: vacancies/templates/vacancies/about.html:36
+#: vacancies/templates/vacancies/about.html:103
+#: vacancies/templates/vacancies/about.html:208
+msgid "Remote work"
+msgstr "Удаленная работа"
+
+#: vacancies/templates/vacancies/about.html:47
+#: vacancies/templates/vacancies/about.html:117
+#: vacancies/templates/vacancies/about.html:225
+msgid "Comfortable quiet work place"
+msgstr "Комфортное тихое рабочее место"
+
+#: vacancies/templates/vacancies/about.html:58
+#: vacancies/templates/vacancies/about.html:131
+#: vacancies/templates/vacancies/about.html:257
+msgid "Any style clothes"
+msgstr "Свободный стиль одежды"
+
+#: vacancies/templates/vacancies/about.html:69
+#: vacancies/templates/vacancies/about.html:160
+#: vacancies/templates/vacancies/about.html:244
+msgid "English language"
+msgstr "Английский язык"
+
+#: vacancies/templates/vacancies/contacts.html:32
+msgid "St. Petersburg, 17 th line of the VO, d. 4-6, of. T-217 BC Citylink"
+msgstr "г. Санкт-Петербург, 17-я линия В.О., д. 4-6, оф. T-217 БЦ Ситилинк"
+
+#: vacancies/templates/vacancies/contacts.html:42
+msgid "Complain to the HR department here:"
+msgstr "Пожаловаться на HR-департамент можно тут:"
+
+#: vacancies/templates/vacancies/contacts.html:75
+msgid "Send complaint to director"
+msgstr "Отправить жалобу директору"
+
+#: vacancies/templates/vacancies/contacts.html:87
+msgid ""
+"If you did not find what you are interested, write us!\n"
+"                    Specialists of HR-department will be happy to answer you."
+msgstr ""
+"Если вы не нашли интересующую вас информацию, напишите нам!Специалисты HR-"
+"департамента с радостью ответят вам."
+
+#: vacancies/templates/vacancies/form_search_vacancies.html:30
+msgid "Search"
+msgstr "Найти"
+
+#: vacancies/templates/vacancies/tags/main_vacancies.html:27
+#: vacancies/templates/vacancies/vacancy_list.html:49
+#: vacancies/templates/vacancies/vacancy_list.html:73
+msgid "Respond"
+msgstr "Откликнуться"
+
+#: vacancies/templates/vacancies/tags/search_filter.html:28
+msgid "Find"
+msgstr "Найти"
+
+#: vacancies/templates/vacancies/vacancies_main.html:9
+msgid "Our vacancies"
+msgstr "Наши вакансии"
+
+#: vacancies/templates/vacancies/vacancies_main.html:13
+msgid "Filter"
+msgstr "Фильтр"
+
+#: vacancies/templates/vacancies/vacancies_main.html:22
+msgid "View all open vacancies"
+msgstr "Посмотреть все открытые вакансии"
+
+#: vacancies/templates/vacancies/vacancy_detail.html:14
+msgid "Vacancy description"
+msgstr "Описание вакансии"
+
+#: vacancies/templates/vacancies/vacancy_detail.html:26
+msgid "Experience and knowledge"
+msgstr "Опыт и Знания"
+
+#: vacancies/templates/vacancies/vacancy_detail.html:30
+msgid "Work description"
+msgstr "Описание работы"
+
+#: vacancies/templates/vacancies/vacancy_detail.html:34
+msgid "Qualification tour"
+msgstr "Отборочный цикл"
+
+#: vacancies/templates/vacancies/vacancy_detail.html:41
+msgid "This vacancy is available for"
+msgstr "Данная вакансия доступна для"
+
+#: vacancies/templates/vacancies/vacancy_detail.html:43
+msgid "all cities"
+msgstr "всех городов"
+
+#: vacancies/templates/vacancies/vacancy_detail.html:45
+msgid "following cities"
+msgstr "следующих городов"
+
+#: vacancies/templates/vacancies/vacancy_detail.html:56
+msgid "Send us your CV!"
+msgstr "Пришлите нам свое резюме!"
+
+#: vacancies/templates/vacancies/vacancy_detail.html:83
+msgid "Attach resume!"
+msgstr "Прикрепить резюме!"
+
+#: vacancies/templates/vacancies/vacancy_list.html:10
+msgid "All vacancies SMYT company"
+msgstr "Все вакансии компании SMYT"
+
+#: vacancies/templates/vacancies/vacancy_list.html:17
+msgid "Didn't find the required vacancy?"
+msgstr "Не нашли нужной вакансии?"
+
+#: vacancies/templates/vacancies/vacancy_list.html:33
+msgid ""
+"While we don't have such vacancies, but send us your resume, and we'll think "
+"of something."
+msgstr ""
+"Пока у нас нет таких вакансий, но пришлите нам свое резюме, и мы что-нибудь "
+"придумаем."
+
+#: vacancies/templates/vacancies/vacancy_list.html:38
+msgid "Vacancies in the form of table on"
+msgstr "Вакансии в виде таблице на"
+
+#: vacancies/templates/vacancies/vacancy_list.html:57
+msgid "Vacancies in the form of tabs on"
+msgstr "Вакансии в виде табов на"
+
+#: vacancies/templates/vacancies/vacancy_list.html:91
+msgid "View more 20 vacancies"
+msgstr "Показать еще 20 вакансий"
+
+#: vacancies/utils.py:13
 #, python-format
 msgid "%(counter)s city"
 msgid_plural "%(counter)s cities"
 msgstr[0] "%(counter)s город"
 msgstr[1] "%(counter)s города"
 msgstr[2] "%(counter)s городов"
+
+#: vacancies/views.py:33
+msgid "Site message"
+msgstr "Сообщение с сайта"
+
+#: vacancies/views.py:70 vacancies/views.py:111
+msgid "Resume from vacancy site"
+msgstr "Резюме с сайта вакансий"
+
+#: vacancies/views.py:74
+msgid "Describe situation here"
+msgstr "Опишите ситуацию здесь"
+
+#: vacancies/views.py:75
+msgid "Appeal text"
+msgstr "Текст ответа"
+
+#: vacancies/views.py:90
+msgid "Complaint from site visitor"
+msgstr "Жалоба с сайта вакансий"
+
+#: vacancies/views.py:99
+msgid "Question about company from site visitor"
+msgstr "Вопрос о компании от посетителя сайта"
 
 msgid "Constance"
 msgstr "Основное"

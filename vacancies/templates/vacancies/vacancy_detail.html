@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load rest_framework %}
+{% load rest_framework i18n %}
 
 
 {% block content %}
@@ -11,7 +11,7 @@
 {#                invalid#}
 {#            {% endif %}#}
     {% endif %}
-    <!-- Описание вакансии -->
+    <!-- {% trans 'Vacancy description' %} -->
 	<section class="section section-lg bg-white">
 		<div class="shell shell-wide">
 			<div class="range range-ten range-50 range-sm-center range-md-middle range-lg-justify range-md-reverse">
@@ -23,26 +23,26 @@
 
 					{{ object.text_inner|safe }}
 
-					<h4 class="m-t-20">Опыт и знания</h4>
+					<h4 class="m-t-20">{% trans 'Experience and knowledge' %}</h4>
 
                     {{ object.text_experience|safe }}
 
-					<h4 class="m-t-20">Описание работы</h4>
+					<h4 class="m-t-20">{% trans 'Work description' %}</h4>
 
 					{{ object.text_desc|safe }}
 
-					<h4 class="m-t-20">Отборочный цикл</h4>
+					<h4 class="m-t-20">{% trans 'Qualification tour' %}</h4>
                     {{ object.text_qualifying|safe }}
 
 				</div>
 
 			</div>
 
-			<h6 class="p-t-20">Данная вакансия доступна для
+			<h6 class="p-t-20">{% trans 'This vacancy is available for' %}
                 {% if is_all_cities %}
-                    всех городов {{ object.country.name_in_case }}
+                    {% trans 'all cities' %} {{ object.country.name_in_case }}
                 {% else %}
-                    следующих городов {{ object.country.name_in_case }}: {{ footer_text_cities }}
+                    {% trans 'following cities' %} {{ object.country.name_in_case }}: {{ footer_text_cities }}
                 {% endif %}
             </h6>
 
@@ -53,7 +53,7 @@
 	<section class="section section-xs text-center bg-black-lighter">
 		<div class="shell-wide">
 			<div class="box-cta-thin">
-				<h4 class="text-left send-us-your-profile">Пришлите нам свое резюме!</h4>
+				<h4 class="text-left send-us-your-profile">{% trans 'Send us your CV!' %}</h4>
 			</div>
 		</div>
 	</section>
@@ -80,7 +80,7 @@
 
 					<div class="cell-xs-12 cell-md-6 m-t-20">
 						<div class="file_upload">
-							<button type="button">Прикрепить резюме</button>
+							<button type="button">{% trans 'Attach resume!' %}</button>
 							<div>*.doc, *.docx, *.rtf, *.pdf</div>
 							{% render_field serializer.file serializer.file.style %}
 						</div>
@@ -132,7 +132,7 @@
 					</div>
 					<div class="cell-xs-12 cell-md-6">
 						<div class="form-button">
-							<button class="base-smyt-btn" type="submit">Отправить</button>
+							<button class="base-smyt-btn" type="submit">{% trans 'Send' %}</button>
 						</div>
 					</div>
 				</div>

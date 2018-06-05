@@ -1,5 +1,7 @@
-REQUIRED_ERROR_TEXT = 'Данное поле является обязательным для заполнения'
-FIO_ERROR_TEXT = 'Введите корретные данные'
+from django.utils.translation import gettext as _
+
+REQUIRED_ERROR_TEXT = _('This field is required')
+FIO_ERROR_TEXT = _('Input correct data')
 FIO_ERRORS_MESSAGES = {
     'required': REQUIRED_ERROR_TEXT,
     'invalid': FIO_ERROR_TEXT,
@@ -7,7 +9,7 @@ FIO_ERRORS_MESSAGES = {
     'max_length': FIO_ERROR_TEXT
 }
 
-SKYPE_ERROR_TEXT = 'Введите верный логин Skype'
+SKYPE_ERROR_TEXT = _('Input correct skype login')
 SKYPE_ERRORS_MESSAGES = {
     'required': REQUIRED_ERROR_TEXT,
     'invalid': SKYPE_ERROR_TEXT,
@@ -15,7 +17,7 @@ SKYPE_ERRORS_MESSAGES = {
     'max_length': SKYPE_ERROR_TEXT
 }
 
-PHONE_ERROR_TEXT = 'Введите верный номер телефона'
+PHONE_ERROR_TEXT = _('Input correct phone number')
 PHONE_ERRORS_MESSAGES = {
     'required': REQUIRED_ERROR_TEXT,
     'invalid': PHONE_ERROR_TEXT,
@@ -25,15 +27,14 @@ PHONE_ERRORS_MESSAGES = {
 
 EMAIL_ERRORS_MESSAGES = {
     'required': REQUIRED_ERROR_TEXT,
-    'invalid': 'Неверный формат e-mail, убедитесь что он соответствует шаблону xxxxx@xxxxx.xxx'
+    'invalid': _('Wrong e-mail format, Make sure it matches xxxxx@xxxxx.xxx')
 }
 
-CAPTCHA_ERROR_TEXT = 'Ошибка при проверке каптчи'
+CAPTCHA_ERROR_TEXT = _('Captcha error text')
 
-FORM_SUCCESS_TEXT = 'Форма успешно отправлена. Ожидайте, пожалуйста, ответ в ближайшее время.'
-COMPLAINT_FORM_SUCCESS_TEXT = 'Ваша претензия была успешно отправлена на email Директора компании. ' \
-                     'Мы примем меры в кратчайшие сроки. Спасибо за обращение!'
+FORM_SUCCESS_TEXT = _('Form sent successfully. Please, wait for an answer soon.')
+COMPLAINT_FORM_SUCCESS_TEXT = _('Your claim was successfully sent to the email of the company Director. '
+                                'We will take action as soon as possible. Thank you for contacting us!')
 
-FILE_ERROR_TEXT = 'Неверный тип файла'
-UPLOADED_FILE_ERROR_TEXT = 'Вы можете загрузить файл размером не более 5Мб'
-
+FILE_ERROR_TEXT = _('Wrong type file')
+UPLOADED_FILE_ERROR_TEXT = _('Max uploaded file size is 5Mb')

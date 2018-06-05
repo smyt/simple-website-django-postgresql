@@ -337,7 +337,7 @@ $document.ready(function () {
 		 */
 		regula.custom({
 			name: "Phone",
-			defaultMessage: "Неверный формат ввода номера, допустимые символы 0123456789+. Убедитесь, что номер введен без пробелов и его длина составляет от 6 до 20 символов",
+			defaultMessage: gettext("Invalid input format, valid characters 0123456789+. Make sure that the number is entered without spaces and its length is from 6 to 20 characters"),
 			validator: function() {
 				var regex = /(^\+?[0-9]{6,20}$)|(^.+@.+\..+$)/g;
 				if (this.value != '') {
@@ -349,7 +349,7 @@ $document.ready(function () {
 
 		regula.custom({
 			name: "Name",
-			defaultMessage: "Введите корректные данные",
+			defaultMessage: gettext("Input correct data"),
 			validator: function() {
 				var regex = /^[a-zA-Zа-яА-Я\s]+$/g;
 				if (this.value != '') {
@@ -361,7 +361,7 @@ $document.ready(function () {
 
 		regula.custom({
 			name: "Skype",
-			defaultMessage: "Введите верный логин Skype",
+			defaultMessage: gettext("Input correct Skype login"),
 			validator: function() {
 				var regex = /^[a-zA-Z\d.:\-_]+$/g;
 
@@ -374,7 +374,7 @@ $document.ready(function () {
 
 		regula.custom({
 			name: "Http",
-			defaultMessage: "Введите корректные данные",
+			defaultMessage: gettext("Input correct data"),
 			validator: function() {
 				var regex = /^(https?:\/\/)?([\da-zа-я\.-]+)\.([a-zа-я\.]{2,6})([\/\w \.-]*)*\/?$/g;
 				if (this.value != '') {
@@ -386,7 +386,7 @@ $document.ready(function () {
 
 		regula.custom({
 			name: "ProfileFileExt",
-			defaultMessage: "Неверное расширение файла",
+			defaultMessage: gettext("Incorrect file extension"),
 			params: ['extensions'],
 			validator: function(params) {
 				var me = this,
@@ -455,7 +455,7 @@ $document.ready(function () {
 					maxSize = params.maxFileSize ? Math.round(parseFloat(params.maxFileSize)) : mega;
 
 					if (file && file.size > maxSize) {
-						params.message = 'Файл слишком большой! Максимальный размер файла ' + formatSizeUnits(maxSize);
+						params.message = gettext('File is so big! Max file size is ') + formatSizeUnits(maxSize);
 						return false;
 					}
 				}
@@ -491,7 +491,7 @@ $document.ready(function () {
 
 				checkField($this, $this.regula('validate'));
 
-				// Добавляем запуск проверки связанных полей (проверка @Together)
+				// Add checking linked fields(checking @Together)
 				var linkField = $this.attr('data-link-field');
 				if (linkField) {
 					var $linkField = $('#' + linkField);
@@ -503,19 +503,19 @@ $document.ready(function () {
 		var regularConstraintsMessages = [
 			{
 				type      : regula.Constraint.Required,
-				newMessage: "Данное поле является обязательным для заполнения"
+				newMessage: gettext("This field is required.")
 			},
 			{
 				type      : regula.Constraint.Email,
-				newMessage: "Неверный формат e-mail, убедитесь что он соответствует шаблону xxxxx@xxxxx.xxx"
+				newMessage: gettext("Invalid e-mail format, make sure it matches the format xxxxx@xxxxx.xxx.")
 			},
 			{
 				type      : regula.Constraint.Numeric,
-				newMessage: "Разрешены только числа"
+				newMessage: gettext("Only numbers are allowed.")
 			},
 			{
 				type      : regula.Constraint.Selected,
-				newMessage: "Выберите вариант"
+				newMessage: gettext("Select an option.")
 			}
 		];
 
@@ -606,7 +606,7 @@ $document.ready(function () {
 		if ($captchaToken == '') {
 			captcha
 				.siblings('.form-validation')
-				.html('Please, prove that you are not robot.')
+				.html(gettext('Please, prove that you are not robot.'))
 				.addClass('active');
 			captcha
 				.closest('.form-group')
@@ -934,7 +934,7 @@ $document.ready(function () {
 					url       : url,
 					dataType  : 'jsonp',
 					error     : function (resp, text) {
-						$output.html('Server error: ' + text);
+						$output.html(gettext('Server error: ') + text);
 
 						setTimeout(function () {
 							$output.removeClass("active");
@@ -952,7 +952,7 @@ $document.ready(function () {
 						if (isNoviBuilder || !isValidated($form.find('[data-constraints]')))
 							return false;
 
-						$output.html('Submitting...').addClass('active');
+						$output.html(gettext('Submitting...')).addClass('active');
 					}
 				});
 
@@ -984,7 +984,7 @@ $document.ready(function () {
 					url       : url,
 					dataType  : 'jsonp',
 					error     : function (resp, text) {
-						$output.html('Server error: ' + text);
+						$output.html(gettext('Server error: ') + text);
 
 						setTimeout(function () {
 							$output.removeClass("active");
@@ -1004,7 +1004,7 @@ $document.ready(function () {
 						if (isNoviBuilder || !isValidated($form.find('[data-constraints]')))
 							return false;
 
-						$output.html('Submitting...').addClass('active');
+						$output.html(gettext('Submitting...')).addClass('active');
 					}
 				});
 

@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
+from django.utils.translation import gettext as _
 
 from settings import STATIC_URL
 from vacancies.options import ALL_CITIES
@@ -46,20 +45,20 @@ class VacancyAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['cities'].label = 'Города'
+        self.fields['cities'].label = _('Cities')
 
 
 class VacancyAdmin(admin.ModelAdmin):
     fields = ('name', 'slug', 'text_main', 'text_inner', 'text_experience', 'text_desc', 'text_qualifying', 'country',
               'cities', 'profile', 'experience', 'is_main', 'is_published', 'priority',)
     list_display = ('name', 'country', 'cities_list', 'profile', 'experience', 'is_published', 'is_main', 'priority',)
-    list_filter = ('country', 'is_published', 'is_main', 'profile__name', 'experience__name', )
+    list_filter = ('country', 'is_published', 'is_main', 'profile__name', 'experience__name',)
     search_fields = ('cities__name', 'country__name', 'name', 'profile__name', 'experience__name', 'text_main',
                      'text_inner', 'text_experience', 'text_desc', 'text_qualifying')
     prepopulated_fields = {"slug": ("name",)}
     form = VacancyAdminForm
     actions = ('make_published', 'make_unpublished', 'show_on_main', 'hide_on_main')
-    list_editable = ('is_published', 'is_main', )
+    list_editable = ('is_published', 'is_main',)
 
     def cities_list(self, obj):
         cities_names = [city.name for city in obj.cities.all()]
@@ -67,30 +66,35 @@ class VacancyAdmin(admin.ModelAdmin):
         return cities
 
     cities_list.allow_tags = True
-    cities_list.short_description = 'Города'
+    cities_list.short_description = _('Cities')
 
     def flash_message(self, request, count):
-        self.message_user(request, 'Количество обновленных вакансий: {}.'.format(count))
+        self.message_user(request, _('Count updated vacancies: %(count).') % {'count': count})
 
     def make_published(self, request, queryset):
         row_updated = queryset.filter(is_published=False).update(is_published=True)
         self.flash_message(request, row_updated)
-    make_published.short_description = 'Опубликовать выбранные'
+
+    make_published.short_description = _('Publish selected')
 
     def make_unpublished(self, request, queryset):
         row_updated = queryset.filter(is_published=True).update(is_published=False)
         self.flash_message(request, row_updated)
-    make_unpublished.short_description = 'Снять публикацию с выбранных'
+
+    make_unpublished.short_description = _('Unpublish selected')
 
     def show_on_main(self, request, queryset):
         row_updated = queryset.update(is_published=True, is_main=True)
         self.flash_message(request, row_updated)
-    show_on_main.short_description = 'Разместить на главной'
+
+    show_on_main.short_description = _('Show on main')
 
     def hide_on_main(self, request, queryset):
         row_updated = queryset.update(is_main=False)
         self.flash_message(request, row_updated)
-    hide_on_main.short_description = 'Скрыть на главной'
+
+    hide_on_main.short_description = _('Hide on main page')
+
 
 admin.site.register(Country, CountryAdmin)
 admin.site.register(City, CityAdmin)

@@ -1,4 +1,4 @@
-{% load static vacancies_tags %}
+{% load static vacancies_tags i18n %}
 <!-- RD Navbar-->
 <header class="page-header section">
 
@@ -25,11 +25,11 @@
                     <div class="rd-navbar-nav-wrap">
                         <ul class="rd-navbar-nav">
                             {% url 'vacancy-list' as url_vacancy_list %}
-                            <li class="{% active_menu_item url_vacancy_list  %}"><a href="{{ url_vacancy_list }}">Вакансии</a></li>
+                            <li class="{% active_menu_item url_vacancy_list  %}"><a href="{{ url_vacancy_list }}">{% trans 'Vacancies' %}</a></li>
                             {% url 'question-list' as url_question_list %}
-                            <li class="{% active_menu_item url_question_list %}"><a href="{{ url_question_list }}">Faq</a></li>
+                            <li class="{% active_menu_item url_question_list %}"><a href="{{ url_question_list }}">{% trans 'Faq' %}</a></li>
                             {% url 'home' as url_home %}
-                            <li class="{% active_menu_item url_home %}"><a class="scroll" href="{{ url_home }}#contacts-form" id="contacts" data-point-inc="120">Контакты</a>
+                            <li class="{% active_menu_item url_home %}"><a class="scroll" href="{{ url_home }}#contacts-form" id="contacts" data-point-inc="120">{% trans 'Contacts' %}</a>
                             </li>
                         </ul>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="rd-navbar-aside-right rd-navbar-collapse">
                     <a id="send-self-profile" class="button button-sm button-default-outline" href="#"
                        data-toggle="modal" data-target="#profile-modal"
-                    >Отправить резюме</a>
+                    >{% trans 'Send resume' %}</a>
                 </div>
 
             </div>

@@ -118,7 +118,7 @@ $(document).ready(function () {
 				if ($(label).is(":visible")) {
                     var labelText  = file_name.length > 15 ? file_name.substr(0, 15) + '...' : file_name;
 					$(label).text(labelText);
-					$(button).text("Прикрепить резюме");
+					$(button).text(gettext("Attach resume"));
 				} else {
 					$(button).text(file_name);
 				}
@@ -130,7 +130,7 @@ $(document).ready(function () {
 	});
 
 	/**
-	 * Выравнивание по высоте колонок с описанием вакансий
+	 * Height-aligned columns with job descriptions
 	 */
 	(function () {
 
@@ -143,7 +143,7 @@ $(document).ready(function () {
 				boxesMax,
 				padding = 0;
 
-			// Сбрасываем высоту колонок
+			// Reset buttons height
 			titles.each(function (idx, item) {
 				$(item).css('height', '');
 			});
@@ -152,7 +152,7 @@ $(document).ready(function () {
 				$(item).css('height', '');
 			});
 
-			// Вычисляем самый высокий title
+			// Calculate the highest title
 			titles.each(function (idx, item) {
 				titlesHeight.push(item.clientHeight);
 			});
@@ -163,7 +163,7 @@ $(document).ready(function () {
 				$(item).css('height', titleMax + 'px');
 			});
 
-			// Вычисляем самый высокое описание
+			// Calculation the highest description
 			boxes.each(function (idx, item) {
 				boxesHeight.push(item.clientHeight);
 			});
@@ -181,7 +181,7 @@ $(document).ready(function () {
 	})();
 
 	/**
-	 * Выравнивание формы контактов
+	 * Align contact form
 	 */
 	(function () {
 
@@ -208,7 +208,7 @@ $(document).ready(function () {
 	$(window).trigger('resize');
 
 	/**
-	 * События по открытию и закрытию модальных окон
+	 * Events on opening and closing modal windows
 	 */
 	(function () {
 		var $messageModal = $('#message-modal'),
@@ -236,7 +236,7 @@ $(document).ready(function () {
 			$profileModal.on('show.bs.modal', addRight);
 			$profileModal.on('hidden.bs.modal', removeRight);
 
-            // Сброс формы при закрытии окна.
+            // Reset form on close window.
 			$profileModal.on('hidden.bs.modal', function() {
                 var form = $profileModal.find('.rd-mailform');
                 if (form.length > 0) {
@@ -251,7 +251,7 @@ $(document).ready(function () {
 	})();
 
 	/**
-	 * Выравнивание promo блоков по высоте на middle и large devices .
+	 * Height-Aligning promo blocks on middle and large devices .
 	 */
 	(function () {
 
@@ -270,11 +270,11 @@ $(document).ready(function () {
 
 				maxHeight = schedule.outerHeight() + remoteJob.outerHeight() + workPlace.outerHeight() + 20;
 
-				// Выравнивание внутренней колонки
+				// Aligning the inner column
 				diff = (schedule.outerHeight() + remoteJob.outerHeight() + 10) - smytMain.outerHeight();
 				smytMain.css('min-height', smytMain.outerHeight() + diff);
 
-				// Выравнивание внешне левой колонки
+				// Aligning the outer left column
 				diff = maxHeight - (english.outerHeight() + freeStyle.outerHeight() + 10);
 				freeStyle.css('min-height', freeStyle.outerHeight() + diff);
 			}
@@ -298,7 +298,7 @@ $(document).ready(function () {
 
 
 	/**
-	 * Выделение пункта меню контакты при скролинге до него.
+	 * Selecting contacts menu on scrolling to it.
 	 */
 	(function () {
 		function onDocumentScroll() {

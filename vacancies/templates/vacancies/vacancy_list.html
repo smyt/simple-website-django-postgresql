@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
-{% load vacancies_tags %}
+{% load vacancies_tags i18n %}
 
 {% block content %}
 
-    <!-- Вакансии -->
+    <!-- Vacancies -->
 	<section class="section section-lg bg-white text-center sm-p-t">
 		<div class="shell shell-wide">
 
-			<h3>Все вакансии компании SMYT</h3>
+			<h3>{% trans 'All vacancies SMYT company' %}</h3>
 
 			<div class="divider divider-default"></div>
             {%  search_filter ajax=True %}
 
 			<h6 class="text-sm-right text-xs-center not-found-job">
 				<a data-target="#profile-modal" data-toggle="modal" href="#">
-				Не нашли нужной вакансии?
+				{% trans "Didn't find the required vacancy?" %}
 				</a>
 			</h6>
 
 		</div>
 	</section>
 
-	<!-- Список вакансий-->
+	<!-- Vacancy list-->
 	<section class="section section-lg bg-white text-center">
 		<div class="shell shell-wide">
 			<div class="range range-xs-center">
@@ -30,12 +30,12 @@
                     {% if not results %}
                         <div id="no-vacancies" class="text-center">
                             <p class="smyt-big">
-                                Пока у нас нет таких вакансий, но пришлите нам свое резюме, и мы что-нибудь придумаем.
+                                {% trans "While we don't have such vacancies, but send us your resume, and we'll think of something." %}
                             </p>
                         </div>
                     {% endif %}
 
-					<!-- Вакансии в виде таблице на > 767 -->
+					<!-- {% trans 'Vacancies in the form of table on' %} > 767 -->
 
 					<div id="job-table" class="table-novi table-custom-responsive">
 						<table class="table-custom table-hover" id="hire-table">
@@ -46,7 +46,7 @@
                                         <td><p>{{ vacancy.profile }}</p></td>
                                         <td><p>{{ vacancy.country }}, {{ vacancy.text_count_cities }}</p></td>
                                         <td class="text-right send-profile-cell">
-                                            <a class="button button-sm button-primary" href="{{ vacancy.url }}#send-profile">Откликнуться</a>
+                                            <a class="button button-sm button-primary" href="{{ vacancy.url }}#send-profile">{% trans 'Respond' %}</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -54,7 +54,7 @@
 						</table>
 					</div>
 
-					<!-- Вакансии в виде табов на < 767 -->
+					<!-- {% trans 'Vacancies in the form of tabs on' %} < 767 -->
 					<div id="job-table-m" class="text-left">
                         {% for vacancy in results %}
                             <div class="box-info">
@@ -70,7 +70,7 @@
                                         </li>
                                         <li class="box-classic text-center">
                                             <a href="{{ vacancy.url }}#send-profile"
-                                               class="scroll button button-sm button-primary with-lato">Откликнуться</a>
+                                               class="scroll button button-sm button-primary with-lato">{% trans 'Respond' %}</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -88,7 +88,7 @@
                            data-load-url="{{ next_url }}"
                            onclick="return false"
                            class="button button-sm button-primary"
-                           type="button">Показать еще 20 вакансий</a>
+                           type="button">{% trans 'View more 20 vacancies' %}</a>
                     </div>
                 </div>
         {% endif %}

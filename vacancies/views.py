@@ -6,6 +6,7 @@ import django_rq
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from django.utils.translation import gettext as _
 from rest_framework.permissions import AllowAny
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
@@ -29,7 +30,7 @@ class SerializerHelperMixin:
     Mixin for processing form(serializer)
     """
     serializer_class = ResumeSerializer
-    text_subject = 'Сообщение с сайта'
+    text_subject = _('Site message')
     success_answer = FORM_SUCCESS_TEXT
 
     def post(self, request, slug=None):
@@ -66,12 +67,12 @@ class MainPageView(SerializerHelperMixin, SeoHelperMixin, APIView):
     renderer_classes = [TemplateHTMLRenderer]
     permission_classes = (AllowAny,)
     serializer_class = ResumeSerializer
-    text_subject = 'Резюме с сайта'
+    text_subject = _('Resume from vacancy site')
     page_name_for_seo = MAIN_PAGE
 
     def get(self, request):
-        complaint_serializer = ComplaintSerializer(style={'label_text': 'Опишите ситуацию здесь'})
-        question_serializer = QuestionSerializer(style={'label_text': 'Текст обращения', 'id': 'form-2-message'})
+        complaint_serializer = ComplaintSerializer(style={'label_text': _('Describe situation here')})
+        question_serializer = QuestionSerializer(style={'label_text': _('Appeal text'), 'id': 'form-2-message'})
 
         return Response({
             'seo': self.get_seo_data(),
@@ -86,7 +87,7 @@ class ComplaintApiView(SerializerHelperMixin, APIView):
     """
     serializer_class = ComplaintSerializer
     permission_classes = (AllowAny,)
-    text_subject = 'Жалоба от посетителя сайта'
+    text_subject = _('Complaint from site visitor')
     success_answer = COMPLAINT_FORM_SUCCESS_TEXT
 
 
@@ -95,7 +96,7 @@ class QuestionApiView(ComplaintApiView):
     Handler for question form(serializer)
     """
     serializer_class = QuestionSerializer
-    text_subject = 'Вопрос о компании от посетителя сайта'
+    text_subject = _('Question about company from site visitor')
     success_answer = FORM_SUCCESS_TEXT
 
 
@@ -107,7 +108,7 @@ class VacancyDetailView(SerializerHelperMixin, SeoHelperMixin, APIView):
     renderer_classes = [TemplateHTMLRenderer]
     permission_classes = [AllowAny]
     serializer_class = ResumeSerializer
-    text_subject = 'Резюме с сайта'
+    text_subject = _('Resume from vacancy site')
     page_name_for_seo = VACANCY_PAGE
 
     def get(self, request, slug=None):

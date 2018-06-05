@@ -243,4 +243,4 @@ FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.MemoryFileUploadHandler',
 ]
 
-SITE_ID=1
+SITE_ID = 1

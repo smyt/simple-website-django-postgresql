@@ -1,96 +1,123 @@
-# Сайт вакансий компании SMYT
-### Предварительные требования:
-Версия python: 3
+# Career site SMYT company
+### Prerequisites:
+Python version: 3
 
-Для работы приложения потребуются:
+To use this application, you will need:
 * Nginx
 * Postgresql
 * Redis
 * virtualenvwrapper
 
-Необходимые пакеты можно поставить так:
+Required packages can be install by typing:
 ```
 sudo apt-get update
 sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx redis-server 
 ```
-Подробная инструкция по устаноке virtualenvwrapper находится тут:
+Detailed instructions for installing virtualenvwrapper you can find here:
 
-[virtualenvwrapper](http://virtualenvwrapper.readthedocs.io/en/latest/install.html)-инструкция по установке и настройке
+[virtualenvwrapper](http://virtualenvwrapper.readthedocs.io/en/latest/install.html)-full manual
 
-Если проект будет разворачиваться в виртуальном окружении, то необходимо
-установить виртуальное окружение с поддержкой python3, например так:
+If the project deploy in a virtual environment, then it is necessary
+install a virtual environment with python3 support, for example:
 ```
-Для MacOS: mkvirtualenv --python=/usr/local/bin/python3 smyt_careers
-Для Linux: mkvirtualenv --python=/usr/bin/python3 smyt_careers 
+For MacOS: mkvirtualenv --python=/usr/local/bin/python3 smyt_careers
+For Linux: mkvirtualenv --python=/usr/bin/python3 smyt_careers 
 ```
-На сайте используются google-captcha, поэтому необходимо получить ключи доступа,
-подробнее как получить описано тут: 
+This site uses google-captcha, so you need to get access keys,
+more details how to get described here: 
 * [Google-captcha](https://developers.google.com/recaptcha/intro)
-* [Управление ключами](https://www.google.com/recaptcha/admin#list)
+* [Manage keys](https://www.google.com/recaptcha/admin#list)
 
-используемая версия: **reCAPTCHA V2**
+Used version: **reCAPTCHA V2**
 
-Необходимо зарегистрировать свой сайт и получить 2 ключа: ваш ключ сайта, указав правильное имя домена и секретный ключ для работы с google.
+You need to register your site and get two keys: your site key, specifying the correct domain name and secret key for working with google.
 
-### Инструкция по развертыванию:
-В директории проекта есть каталог conf с конфигурационными файлами:
+###Deploy instruction:
+Directory project has a directory, named conf, it's directory with configuration files.
 ```
-nginx.conf.sample - конфигурационный файл для nginx
-uwsgi.ini.sample - конфигурационный файл для uwsgi
-systemd.conf.sample - сервис, поднимающий uwsgi для сайта
-systemd_rq.conf.sample - сервис, поднимающий очередь на основе redis для сайта 
+nginx.conf.sample - config file for nginx
+uwsgi.ini.sample - config file for uwsgi
+systemd.conf.sample - service, creating concrete uwsgi for the site
+systemd_rq.conf.sample - service, creating concrete redis queue for the site
 
 ```
-*Все файлы нужно переименовать, убрав постфикс .sample*
+*All files need to be renamed, removing the postfix .sample*
 
-Установить все зависимости для проекта:
+Install all requirements for project:
 ```
 pip install -r requirements.pip
 ```
-Скопировать файл настроек в проект:
+Copy file settings into the project:
 ```
 cp ./settings/local_settings.py.sample ./settings/local_settings.py
 ```
-Указать нужные настройки для проекта:
+Set required settings:
 ```
-SECRET_KEY = 'секртеный ключ для работы сайта'
-DEBUG = False # отключаем отладочный режим
-ALLOWED_HOSTS = [] # нужно перечислить список имен, адресов которые будут иметь доступ
-GR_CAPTCHA_SITE_KEY = 'ключ сайта для каптчи, который был получен ранее'
-GR_CAPTCHA_SECRET_KEY = 'секретный ключ для каптчи, который был получен ранее'
-В разделе ADMINS указать список администраторов сайта по примеру из файла 
-Указать необходимые настройки для работы почты по примеру из файла
+SECRET_KEY = 'secret key for site'
+DEBUG = False # disable debug mode
+ALLOWED_HOSTS = [] # list of names, addresses that will have access
+GR_CAPTCHA_SITE_KEY = 'google captcha key for site'
+GR_CAPTCHA_SECRET_KEY = 'secret google captcha key for site'
+In the ADMINS section, specify the list of site administrators following the example from the file 
+Specify the necessary settings for the operation of mail according to the example from the file
 ```
-Предполагается использование субд postgres, для этого в настройках, в разделе DATABASE укажите следующие параметры:
+It's suppose to use the postgresql database system, for this in the settings, in the DATABASE section specify the following parameters:
 ```
-'NAME ': 'smyt_careers' # реальное имя базы данных на сервере
-'USER': 'smyt',  # имя пользователя базы данных
-'PASSWORD': 'password', # пароль пользователя базы данных
-'HOST': 'localhost', # если субд будет на другом хосте, то следует это указать тут
-'PORT': '5432', # порт на котором работает postgres на сервере
+'NAME ': 'smyt_careers' # real database name
+'USER': 'smyt',  # database username
+'PASSWORD': 'password', # database user password
+'HOST': 'localhost', # database host
+'PORT': '5432', # database port
 ```
-Создать в корне проекта каталоги для медиа и статики:
+Create directories for media and static in root project:
 ```
 mkdir ./media
 mkdir ./static
 
 ```
-Проверить все ли в порядке:
+Check project:
 ```
 python manage.py check
 ```
-Выполнить миграции:
+Apply migrations:
 ```
 python manage.py migrate
 ```
-Собрать статику:
+Collect static:
 ```
 python manage.py collectstatic
 ```
-Создать администратора сайта:
+Create minimized and common one js/css static file from other js/css static files:
+```
+python manage.py compress
+```
+Create site administrator:
 ```
 python manage.py createsuperuser
 ```
-### После развертывания:
-После того, как сайт уже работает, с помощью администратора сайта необходимо указать в административном интерфейсе django список e-mail получателей писем с сайта.
+###Multi language
+Add your language into LANGUAGE section in settings/base.py:
+```
+...
+('ua', _('Ukraine'))
+...
+```
+Create messages for translation:
+```
+./manage.py makemessages -l ua
+```
+Make translations in file:
+```
+locale/ua/LC_MESSAGES/django.po
+```
+Compile file with translations:
+```
+./manage.py compilemessages
+```
+Create ua-templates with translations, following the example of other languages, in:
+```
+vacancies/templates/translations/about/ua/
+```
+###After deploy
+After the site is already working, you need to specify a list of e-mail recipients of letters from the site in the django admin panel.
 

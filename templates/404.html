@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 
-	<section class="section fullwidth-page bg-gray-darker">
-		<div class="fullwidth-page-inner">
-			<div class="section-md text-center">
-				<div class="shell">
-					<p class="breadcrumbs-custom-subtitle">Извините, запрашиваемая вами страница не найдена</p>
-					<p class="heading-1 breadcrumbs-custom-title">Ошибка 404</p>
-					<p>Возможно вы ошиблись адресом или страница была перемещена.</p>
-					<a class="button button-primary" href="{% url 'vacancy-list' %}">Посмотреть все вакансии</a>
-				</div>
-			</div>
+    <section class="section fullwidth-page bg-gray-darker">
+        <div class="fullwidth-page-inner">
+            <div class="section-md text-center">
+                <div class="shell">
+                    <p class="breadcrumbs-custom-subtitle">{% trans 'Sorry, the requested page is not found' %}</p>
+                    <p class="heading-1 breadcrumbs-custom-title">{% trans 'Error 404' %}</p>
+                    <p>{% trans 'Perhaps you were mistaken with the address or the page was moved.' %}</p>
+                    <a class="button button-primary" href="{% url 'vacancy-list' %}">{% trans 'View all jobs' %}</a>
+                </div>
+            </div>
             {% include 'footer.html' %}
         </div>
-	</section>
+    </section>
 
 {% endblock %}
 

@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div class="shell shell-wide">
-    <!-- Вакансии -->
+    <!-- Vacancies -->
     <div class="range range-30 range-center text-left">
 
         {% for vacancy in vacancies %}
@@ -24,7 +24,7 @@
 
                             <li class="box-classic smyt-box-mn text-center">
                                 <a href="{{ vacancy_url }}#send-profile"
-                                   class="scroll button button-sm button-primary with-lato">Откликнуться</a>
+                                   class="scroll button button-sm button-primary with-lato">{% trans 'Respond' %}</a>
                             </li>
                         </ul>
                     </div>

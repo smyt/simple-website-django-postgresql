@@ -13,7 +13,7 @@
 
 $(document).ready(function () {
     /**
-     * Глобальные функции между сриптами.
+     * Global functions for scripts.
      * @type {clearFormAfterRequest}
      */
     App = _.extend(App, {
@@ -30,7 +30,7 @@ $(document).ready(function () {
 			rdMailForm: $('.rd-mailform')
 		};
 
-	// Устанавливаем формам идентификаторы для их поиска чтобы сбросить
+	// Set the forms IDs for their search to reset
     plugins.rdMailForm.map(function (index, item) {
         item.counter = index;
     });
@@ -75,7 +75,8 @@ $(document).ready(function () {
 	};
 
 	if (plugins.captcha.length) {
-		$.getScript("//www.google.com/recaptcha/api.js?onload=onloadCaptchaCallback&render=explicit&hl=ru");
+		var lang = $('html').attr('lang');
+		$.getScript("//www.google.com/recaptcha/api.js?onload=onloadCaptchaCallback&render=explicit&hl="+lang);
 	}
 
 	/**
@@ -120,7 +121,7 @@ $(document).ready(function () {
 		if ($captchaToken == '') {
 			captcha
 				.siblings('.form-validation')
-				.html('Пожалуйста, подтвердите что Вы не робот.')
+				.html(gettext('Please, confirm, that you are not a robot.'))
 				.addClass('active');
 			captcha
 				.closest('.form-group')
@@ -149,7 +150,7 @@ $(document).ready(function () {
 	}
 
 	/**
-	 * Очистка формы после прихода результат ответа сервера.
+	 * Clear the form after the arrival of the server response result.
 	 */
 	function clearFormAfterRequest(scope, options) {
 		var index = scope.extraData ? scope.extraData.counter : scope.counter,
@@ -264,12 +265,12 @@ $(document).ready(function () {
 		var modalPr = $('#message-modal-text'),
 			data,
             errorsList = [],
-            errorMsg = 'Неизвестная ошибка';
+            errorMsg = gettext('Unknown error!');
 
 		try {
     		data = _.isString(response) ? JSON.parse(response) : response;
             /**
-             * Если ответ попал в fail, error
+             * If answer in fail, error
              */
             if (data.responseJSON) {
                 data = data.responseJSON;
@@ -278,7 +279,7 @@ $(document).ready(function () {
         catch (e) {
             data = {
                 success: false,
-                errorText: 'Непредвиденная ошибочка!'
+                errorText: gettext('Unknown error!')
             }
         }
 
@@ -302,14 +303,14 @@ $(document).ready(function () {
 		$('#message-modal').modal('show');
 	}
 
-	// Загрузка городов при выборе страны
+	// Load cities in selecting country
 	(function () {
 		var countryCombo = $('#country'),
 			cityCombo = $('#cities'),
 			defaultOption,
 			url = cityCombo.attr('data-load-url') || '/cities';
 
-		defaultOption = new Option('Все города', '', true, true);
+		defaultOption = new Option(gettext('All cities'), '', true, true);
 
 		countryCombo.on('select2:select', function (e) {
 			var country = countryCombo.val();
@@ -349,7 +350,7 @@ $(document).ready(function () {
 	})();
 
 	/**
-	 * Объект вакансии.
+	 * Vacancy object.
 	 * @param options
 	 * @constructor
 	 */
@@ -369,7 +370,7 @@ $(document).ready(function () {
 			'   <p><%= country + \', \' + text_count_cities %></p>' +
 			'</td>' +
 			'<td class="text-right send-profile-cell">' +
-				'<a class="button button-sm button-primary" href="<%= url + \'#send-profile\' %>">Откликнуться</a>' +
+				'<a class="button button-sm button-primary" href="<%= url + \'#send-profile\' %>">' + gettext('Respond') + '</a>' +
 			'</td>'
 		);
 
@@ -387,7 +388,7 @@ $(document).ready(function () {
 						'</li>' +
 						'<li class="box-classic text-center">' +
 							'<a href="<%= url + \'#send-profile\' %>" ' +
-							'class="scroll button button-sm button-primary with-lato">Откликнуться</a>' +
+							'class="scroll button button-sm button-primary with-lato">' + gettext('Respond') + '</a>' +
 						'</li>' +
 					'</ul>' +
 				'</div>' +
@@ -416,7 +417,7 @@ $(document).ready(function () {
 	};
 
 	/**
-	 * Объект списка вакансий.
+	 * Vacancy list object.
 	 * @constructor
 	 */
 	function VacanciesList(options) {
@@ -454,11 +455,11 @@ $(document).ready(function () {
 			if (!item.isRendered) {
 				itemContent = item.render();
 
-				// Добавление контента к обычной версии
+				// Adding content to usual version
 				tr = $(row({content: itemContent.full}));
 				body.append(tr);
 
-				// Добавление контента к мобильной версии
+				// Adding content to mobile version
 				me.mobiHireTable.append(itemContent.mobi);
 			}
 		});
@@ -483,7 +484,7 @@ $(document).ready(function () {
 	};
 
 	/**
-	 * Если вакансий мало или нет, то необходимо добавить класс к футеру и сделать его привязанным к низу.
+	 * If vacancies are small or not, then you need to add the class to the footer and make it tied to the bottom.
 	 */
 	VacanciesList.prototype.checkFooterPosition = function () {
 		var me = this,
@@ -544,7 +545,7 @@ $(document).ready(function () {
 	};
 
     /**
-     * Объект для навигации по истории поиска вакансии и пагинации.
+     * Object for navigation on history vacancy searching and pagination.
      *
      * options - {
      *      popStateCallback: func
@@ -649,7 +650,7 @@ $(document).ready(function () {
         init();
     }
 
-	// Загрузка следующих 20 вакансий и загрузка поиска вакансий
+	// Loading next 20 vacancies and loading vacancy searching.
 	(function () {
 		var loadMoreBtn = $('#load-more'),
 			searchForm = $('.search-vacancies-ajax'),
@@ -720,11 +721,11 @@ $(document).ready(function () {
 
                         var list = data.results;
 
-                        // Установка фильтров и кнопки "Загрузить еще"
+                        // Setting filters and button 'Load more'
                         setFilters(search);
                         toggleLoadmore(data);
 
-                        // Перерисовка вакансий
+                        // Redrawing vacancies
                         vacanciesStore.clear();
                         for (var i = 0; i < list.length; i++) {
                             vacanciesStore.add(new Vacancy(list[i]));
@@ -755,7 +756,7 @@ $(document).ready(function () {
         }
 
         /**
-         * Объект для управления history.
+         * Object for history management.
          * @type {SearchHistoryLoader}
          */
         var vacanciesHistory = new SearchHistoryLoader({
@@ -763,7 +764,7 @@ $(document).ready(function () {
         });
 
         /**
-         * Объект для управления вакансиями.
+         * Object for vacancies management.
          * @type {VacanciesList}
          */
 		var vacanciesStore = new VacanciesList({
@@ -771,7 +772,7 @@ $(document).ready(function () {
 			hireTableId    : 'hire-table',
 			mobiHireTableId: 'job-table-m',
 			loadUrl        : moreUrl,
-			emptyMessage   : 'Пока у нас нет таких вакансий, но пришлите нам свое резюме, и мы что-нибудь придумаем.',
+			emptyMessage   : gettext("While we don't have such vacancies, but send us your resume, and we'll think of something."),
             afterInit: function () {
 				var me = this,
 					footer = $('.smyt-footer'),
@@ -796,7 +797,7 @@ $(document).ready(function () {
 		});
 
         /**
-         * Загрузка списка вакансий по кнопке "Загрузить еще"
+         * Loading vacancy list on button 'Load more'
          */
 		loadMoreBtn.click(function () {
             var pagination = getPagination();
@@ -805,7 +806,7 @@ $(document).ready(function () {
 			vacanciesStore.load({
 				params: params,
 				fn    : function (data) {
-					// Больше нет вакансий
+					// No vacancies
 					if (data.next === null) {
 						loadMoreBtn.hide();
 					}
@@ -819,7 +820,7 @@ $(document).ready(function () {
 		});
 
          /**
-         * Загрузка списка вакансий кнопкой "Найти" в форме
+         * Loading vacancy list by button 'Find' in Form
          */
 		searchForm.attr('novalidate', 'novalidate').ajaxForm({
 			data        : {
@@ -842,7 +843,7 @@ $(document).ready(function () {
 					}
 					vacanciesStore.render();
 
-					// Больше нет вакансий - скрываем кнопку
+					// If id doesn't vacancies, hide button
                     toggleLoadmore(result);
 
     				var search = getSearchObject(),
@@ -863,7 +864,7 @@ $(document).ready(function () {
 			}
 		});
 
-        // Первоначальная замена url на странице вакансий
+        // Initial replacing url on vacancy page
         if (window.location.pathname === '/vacancies/') {
             var initSearch = getSearchObject(),
                 initFilters = getFilters(),

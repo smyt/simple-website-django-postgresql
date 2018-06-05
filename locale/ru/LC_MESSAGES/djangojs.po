@@ -1,0 +1,126 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-04 16:49+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: common_static/js/forms.js:123
+msgid "Please, confirm, that you are not a robot."
+msgstr "Пожалуйста, подтвердите что Вы не робот."
+
+#: common_static/js/forms.js:267 common_static/js/forms.js:281
+msgid "Unknown error!"
+msgstr "Неизвестная ошибка!"
+
+#: common_static/js/forms.js:312
+msgid "All cities"
+msgstr "Все города"
+
+#: common_static/js/forms.js:372 common_static/js/forms.js:390
+msgid "Respond"
+msgstr "Откликнуться"
+
+#: common_static/js/forms.js:774
+msgid ""
+"While we don't have such vacancies, but send us your resume, and we'll think "
+"of something."
+msgstr "Пока у нас нет таких вакансий, но пришлите нам свое резюме, и мы что-нибудь придумаем."
+
+
+#: common_static/js/script.js:340
+msgid ""
+"Invalid input format, valid characters 0123456789+. Make sure that the "
+"number is entered without spaces and its length is from 6 to 20 characters"
+msgstr ""
+"Неверный формат ввода номера, допустимые символы 0123456789+."
+"Убедитесь, что номер введен без пробелов и его длина составляет от 6 до 20 символов"
+
+#: common_static/js/script.js:352 common_static/js/script.js:377
+msgid "Input correct data"
+msgstr "Введите корректные данные"
+
+#: common_static/js/script.js:364
+msgid "Input correct Skype login"
+msgstr "Введите верный логин Skype"
+
+#: common_static/js/script.js:389
+msgid "Incorrect file extension"
+msgstr "Неверное расширение файла"
+
+#: common_static/js/script.js:458
+msgid "File is so big! Max file size is "
+msgstr "Файл слишком большой! Максимальный размер файла "
+
+#: common_static/js/script.js:506
+msgid "This field is required."
+msgstr "Данное поле является обязательным для заполнения"
+
+#: common_static/js/script.js:510
+msgid "Invalid e-mail format, make sure it matches the format xxxxx@xxxxx.xxx."
+msgstr "Неверный формат e-mail, убедитесь что он соответствует шаблону xxxxx@xxxxx.xxx"
+
+#: common_static/js/script.js:514
+msgid "Only numbers are allowed."
+msgstr "Разрешены только числа."
+
+#: common_static/js/script.js:518
+msgid "Select an option."
+msgstr "Выберите вариант."
+
+#: common_static/js/script.js:609
+msgid "Please, prove that you are not robot."
+msgstr "Пожалуйста, подтвердите что вы не робот."
+
+#: common_static/js/script.js:937 common_static/js/script.js:987
+msgid "Server error: "
+msgstr "Ошибка на сервере: "
+
+#: common_static/js/script.js:955 common_static/js/script.js:1007
+msgid "Submitting..."
+msgstr "Подтверждение..."
+
+#: common_static/js/smyt.js:121
+msgid "Attach resume"
+msgstr "Прикрепить резюме"
+
+#: vacancies/static/vacancies/js/SelectFilter2.js:19
+msgid "Cities"
+msgstr "Города"
+
+#: vacancies/static/vacancies/js/SelectFilter2.js:79
+msgid "Select all cities for the moment"
+msgstr "Выбрать все города на текущий момент"
+
+#: vacancies/static/vacancies/js/SelectFilter2.js:80
+msgid ""
+"Click to select all cities for the current time (you will have to add new "
+"cities manually after adding to the directory)"
+msgstr ""
+"Нажмите, чтобы выбрать все города на текущий момент(новые города после добавления в справочник "
+"нужно будет добавлять вручную)"
+
+#: vacancies/static/vacancies/js/SelectFilter2.js:111
+msgid "Select cities from dictionary"
+msgstr "Выбрать города из справочника"
+
+#: vacancies/static/vacancies/js/SelectFilter2.js:112
+msgid ""
+"Click to select cities from the directory (new cities after adding to the "
+"directory will be selected automatically)"
+msgstr "Нажмите чтобы выбрать города из справочника(новые города после добавления в справочник выберутся автоматически)"

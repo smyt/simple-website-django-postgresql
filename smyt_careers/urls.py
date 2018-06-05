@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import url, include
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
+from django.views.i18n import JavaScriptCatalog
 
 from smyt_careers.api import router
 from smyt_careers.sitemaps import SITEMAPS
@@ -33,8 +35,13 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^django-rq/', include('django_rq.urls')),
-    url(r'^sitemap.xml', sitemap, {'sitemaps': SITEMAPS}, name='django.contrib.sitemaps.views.sitemap')
+    url(r'^sitemap.xml', sitemap, {'sitemaps': SITEMAPS}, name='django.contrib.sitemaps.views.sitemap'),
+
 ]
+
+urlpatterns += i18n_patterns(
+    url('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+)
 
 if settings.DEBUG:
     from django.conf.urls.static import static
